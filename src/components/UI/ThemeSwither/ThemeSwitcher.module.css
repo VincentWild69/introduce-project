@@ -1,0 +1,67 @@
+.themeSwitcherContainer {
+  text-align: right;
+}
+
+.themeCheckbox {
+  display: none;
+}
+
+.themeSwitcher {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 36px;
+}
+
+.themeSlider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--theme-default-theme-switcher-bg-color);
+  border-radius: 46px;
+  transition: all 0.4s ease;
+  border: 2px solid #3a3a3a;
+}
+
+.themeSlider::after {
+  content: '';
+  position: absolute;
+  top: 5%;
+  right: 51%;
+  width: 28px;
+  height: 28px;
+  background-color: #3a3a3a;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.themeSliderState {
+  display: inline-block;
+  margin: 0 5px;
+  width: 23px;
+  height: 23px;
+  background-size: cover;
+}
+
+
+.themeSliderState svg {
+  fill: #3a3a3a;
+}
+
+.themeCheckbox:checked + .themeSlider::after {
+  transform: translateX(30px);
+}
+
+.themeCheckbox:not(:checked)+ .themeSlider > .themeSliderDay {
+  visibility: hidden;
+}
+
+.themeCheckbox:checked + .themeSlider > .themeSliderNight {
+  visibility: hidden;
+}

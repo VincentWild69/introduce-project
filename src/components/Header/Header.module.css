@@ -1,0 +1,8 @@
+.header {
+  background-color: var(--theme-default-header-bg-color);
+  color: var(--theme-default-text-color);
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

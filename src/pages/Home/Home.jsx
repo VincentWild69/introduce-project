@@ -1,0 +1,11 @@
+import s from './Home.module.css';
+
+
+
+const Home = (props) => {
+  return (
+    <div className={s.home}>Home Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.</div>
+  );
+}
+
+export default Home;

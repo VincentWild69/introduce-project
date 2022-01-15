@@ -1,0 +1,11 @@
+import s from './Contacts.module.css';
+
+
+
+const Contacts = (props) => {
+  return (
+    <div className={s.Contacts}>Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.</div>
+  );
+}
+
+export default Contacts;

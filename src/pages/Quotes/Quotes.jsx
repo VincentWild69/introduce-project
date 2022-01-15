@@ -1,0 +1,11 @@
+import s from './Quotes.module.css';
+
+
+
+const Quotes = (props) => {
+  return (
+    <div className={s.quotes}>Quotes Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.Contacts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum iure, et ullam exercitationem voluptatum dolores debitis quasi ducimus minus obcaecati expedita eum odio incidunt maiores sed praesentium consequuntur neque qui.</div>
+  );
+}
+
+export default Quotes;
