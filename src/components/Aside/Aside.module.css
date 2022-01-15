@@ -1,5 +1,74 @@
-.aside {
+.aside, .asideActive {
   display: flex;
   flex-direction: column;
-  
+  min-width: 250px;
+  padding: 30px 25px;
+  height: 100%;
+  background-color: var(--theme-default-aside-bg-color);
+  height: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .aside, .asideActive {
+    min-width: 200px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .aside {
+    position: fixed;
+    left: 0;
+    max-width: 250px;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    opacity: 0.95;
+
+    transform: translateX(-100%);
+  }
+
+  .asideActive {
+    position: fixed;
+    left: 0;
+    max-width: 250px;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    opacity: 0.95;
+    
+    transform: translateX(0);
+  }
+
+}
+
+.menuItem{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.beforeIcon {
+  margin-right: 5px;
+  color: var(--theme-default-text-color);
+}
+
+.menuLink {
+  color: var(--theme-default-text-color);
+  font-size: 20px;
+  font-weight: 500;
+  transition: 0.1s;
+}
+
+.menuLinkActive {
+  color: var(--theme-default-text-color);
+  font-size: 20px;
+  font-weight: 600;
+  transition: 0.1s;
+  text-decoration: underline;
+}
+
+.menuLink:hover {
+  color: #8d6716;
+  transition: 0.1s;
 }

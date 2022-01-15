@@ -5,7 +5,7 @@
 
 :root {
   --theme-light-body-bg-color: #fcfcfc;
-  --theme-dark-body-bg-color: #302f2d;
+  --theme-dark-body-bg-color: #414040;
   --theme-default-body-bg-color: var(--theme-light-body-bg-color);
 
   --theme-light-text-color: #000;
@@ -20,9 +20,17 @@
   --theme-dark-footer-bg-color: #242322;
   --theme-default-footer-bg-color: var(--theme-light-footer-bg-color);
 
-  --theme-light-theme-switcher-bg-color: #fbf7c3;
+  --theme-light-theme-switcher-bg-color: #fff9af;
   --theme-dark-theme-switcher-bg-color: #b5d2fd;
   --theme-default-theme-switcher-bg-color: var(--theme-light-theme-switcher-bg-color);
+
+  --theme-light-aside-bg-color: #ffaf90;
+  --theme-dark-aside-bg-color: #202c3e;
+  --theme-default-aside-bg-color: var(--theme-light-aside-bg-color);
+
+  --theme-light-main-bg-color: #fff2ca;
+  --theme-dark-main-bg-color: #33435a;
+  --theme-default-main-bg-color: var(--theme-light-main-bg-color);
 }
 
 html {
@@ -31,6 +39,11 @@ html {
 
 a {
   text-decoration: none;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -42,4 +55,7 @@ body {
   width: 100%;
   margin: 0 auto;
   color: var(--theme-default-text-color);
+  -webkit-box-shadow: 0px 0px 25px 10px rgba(33, 62, 84, 0.2);
+  -moz-box-shadow: 0px 0px 25px 10px rgba(33, 62, 84, 0.2);
+  box-shadow: 0px 0px 25px 10px rgba(33, 62, 84, 0.2);
 }

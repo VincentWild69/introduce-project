@@ -1,5 +1,8 @@
 .themeSwitcherContainer {
-  text-align: right;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .themeCheckbox {
