@@ -1,0 +1,29 @@
+.contactsContainer {
+  padding: 0 20px;
+}
+
+.mainTitle {
+  color: var(--theme-default-text-color);
+  font-size: 30px;
+}
+
+.contactList {
+  margin-top: 70px;
+}
+
+.contactItem {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  font-size: 20px;
+}
+
+.contactLink {
+  color: #2fa73f;
+}
+
+.contactLink:hover {
+  color: #508be4;
+  text-decoration: underline;
+}

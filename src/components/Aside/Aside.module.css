@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .aside, .asideActive {
+  .aside {
     min-width: 200px;
   }
 }
@@ -32,7 +32,7 @@
 
 }
 
-.menuItem{
+.menuItem {
   list-style: none;
   display: flex;
   align-items: center;
@@ -51,6 +51,11 @@
   transition: 0.1s;
 }
 
+.menuItem:hover .menuLink {
+  color: #8d6716;
+  transition: 0.1s;
+}
+
 .menuLinkActive {
   color: var(--theme-default-text-color);
   font-size: 20px;
@@ -59,8 +64,4 @@
   text-decoration: underline;
 }
 
-.menuLink:hover {
-  color: #8d6716;
-  transition: 0.1s;
-}
 
