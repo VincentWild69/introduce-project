@@ -15,14 +15,14 @@ const Layout = (props) => {
 
   return (
     <>
-    <Header isMenuActive={isMenuActive} changeMenuStatus={changeMenuStatus}/>
-    <div className={s.content}>
-      <Aside isMenuActive={isMenuActive} changeMenuStatus={changeMenuStatus}/>
-      <main className={s.main}>
-        <Outlet />
-      </main>
-    </div>
-    <Footer />
+      <Header isMenuActive={isMenuActive} changeMenuStatus={changeMenuStatus}/>
+      <div onClick={() => setMenuActive(false)} className={s.content}>
+        <Aside isMenuActive={isMenuActive}/>
+        <main className={s.main}>
+          <Outlet />
+        </main>
+      </div>
+      <Footer />
     </>
   );
 }

@@ -3,9 +3,9 @@ import s from './Aside.module.css';
 
 const items = [{value: 'Home', href: '/', icon: 'home'}, {value: 'Contacts', href: '/contacts', icon: 'contact_page'}, {value: 'Quotes', href: '/quotes', icon: 'format_quote'},]
 
-const Aside = ({isMenuActive, changeMenuStatus, ...props}) => {
+const Aside = ({isMenuActive, ...props}) => {
   return (
-    <aside className={isMenuActive ? s.asideActive : s.aside} >
+    <aside onClick={e => e.stopPropagation()} className={`${s.aside} ${isMenuActive ? s.active : null}`} >
       <ul className={s.menu}>
         {
           items.map((item, index) => 
