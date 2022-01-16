@@ -1,7 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import s from './Aside.module.css';
+import { PropTypes } from 'prop-types';
+import SvgSelector from './../SvgSelector/SvgSelector';
 
-const items = [{value: 'Home', href: '/', icon: 'home'}, {value: 'Contacts', href: '/contacts', icon: 'contact_page'}, {value: 'Quotes', href: '/quotes', icon: 'format_quote'},]
+const items = [{value: 'Home', href: '/', icon: 'home'}, {value: 'Contacts', href: '/contacts', icon: 'contacts'}, {value: 'Quotes', href: '/quotes', icon: 'quotes'},];
 
 const Aside = ({isMenuActive, ...props}) => {
   return (
@@ -10,7 +12,7 @@ const Aside = ({isMenuActive, ...props}) => {
         {
           items.map((item, index) => 
             <li key={index} className={s.menuItem}>
-              <span className={`material-icons ${s.beforeIcon}`}>{item.icon}</span>
+              <span className={s.beforeIcon}>< SvgSelector id={item.icon} /></span>
               <NavLink className = {link => link.isActive ? s.menuLinkActive : s.menuLink} to={item.href}>{item.value}</NavLink>
             </li>
           )
@@ -19,5 +21,11 @@ const Aside = ({isMenuActive, ...props}) => {
     </aside>
   );
 }
+
+
+Aside.propTypes = {
+  isMenuActive: PropTypes.bool
+}
+
 
 export default Aside;
