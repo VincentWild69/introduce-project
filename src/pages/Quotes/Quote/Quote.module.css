@@ -1,0 +1,43 @@
+
+
+blockquote {
+  background: var(--theme-default-quote-bg-color);
+  color: #202020;;
+  border-left: 2px solid #bbb;
+  font-style: italic;
+  position: relative;
+  margin: 10px auto;
+  padding: 25px 30px;
+  border-radius: 1px;
+  width: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  box-shadow: var(--theme-default-quote-shadow);
+}
+
+blockquote:before {
+  color: #bbb;
+  content: "\201C";
+  position: absolute;
+  top: -2%;
+  left: 5px;;
+  font-size: 80px;
+}
+
+blockquote:after {
+  color: #bbb;
+  content: "\201D";
+  font-size: 80px;
+  position: absolute;
+  bottom: -45px;
+  right: 4%;
+}
+
+.quoteText {
+  font-size: 20px;
+}
+
+cite {
+  font-size: 16px;
+  font-style: normal;
+}

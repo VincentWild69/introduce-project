@@ -31,6 +31,14 @@
   --theme-light-main-bg-color: #fff2ca;
   --theme-dark-main-bg-color: #33435a;
   --theme-default-main-bg-color: var(--theme-light-main-bg-color);
+
+  --theme-light-quote-bg-color: #ffffe6;
+  --theme-dark-quote-bg-color: #e9e5ff;
+  --theme-default-quote-bg-color: var(--theme-light-quote-bg-color);
+
+  --theme-light-quote-shadow: 7px 7px 21px 3px rgba(135, 135, 103, 0.2);
+  --theme-dark-quote-shadow: 7px 7px 21px 3px rgba(148, 193, 236, 0.2);;
+  --theme-default-quote-shadow: var(--theme-light-quote-shadow);
 }
 
 html {
