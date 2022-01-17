@@ -3,7 +3,7 @@
 blockquote {
   background: var(--theme-default-quote-bg-color);
   color: #202020;;
-  border-left: 2px solid #bbb;
+  border-left: 2px solid #a3a3a3;
   font-style: italic;
   position: relative;
   margin: 10px auto;
@@ -16,7 +16,7 @@ blockquote {
 }
 
 blockquote:before {
-  color: #bbb;
+  color: #a3a3a3;
   content: "\201C";
   position: absolute;
   top: -2%;
@@ -25,7 +25,7 @@ blockquote:before {
 }
 
 blockquote:after {
-  color: #bbb;
+  color: #a3a3a3;
   content: "\201D";
   font-size: 80px;
   position: absolute;
