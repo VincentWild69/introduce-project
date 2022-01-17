@@ -2,7 +2,6 @@ import s from './Quotes.module.css';
 import { quoteAPI } from '../../api/api';
 import { useState, useEffect } from 'react';
 import Quote from './Quote/Quote';
-import Preloader from './../../components/Preloader/Preloader';
 
 
 const Quotes = (props) => {
