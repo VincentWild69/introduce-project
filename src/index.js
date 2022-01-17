@@ -7,7 +7,7 @@ import './styles/styles.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename='/introduce-project/'>
+    <BrowserRouter>
       <ThemeProvider>
         <App />
       </ThemeProvider>
