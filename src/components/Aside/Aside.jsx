@@ -3,7 +3,7 @@ import s from './Aside.module.css';
 import { PropTypes } from 'prop-types';
 import SvgSelector from './../SvgSelector/SvgSelector';
 
-const items = [{value: 'Home', href: '/', icon: 'home'}, {value: 'Contacts', href: '/contacts', icon: 'contacts'}, {value: 'Quotes', href: '/quotes', icon: 'quotes'},];
+const items = [{value: 'Home', href: '/', icon: 'home'}, {value: 'Contacts', href: '/contacts', icon: 'contacts'}, {value: 'Quotes', href: '/quotes', icon: 'quotes'}, {value: 'Cats', href: '/cats', icon: 'cats'}];
 
 const Aside = ({isMenuActive, ...props}) => {
   return (

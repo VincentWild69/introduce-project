@@ -1,0 +1,13 @@
+.loadMoreVisible {
+  display: block;
+  margin: 0 auto;
+  background-color: #72d7b5;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.loading {
+  font-size: 20px;
+  margin-top: 30vh;
+  text-align: center;
+}
