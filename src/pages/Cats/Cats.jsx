@@ -12,7 +12,6 @@ const Cats = () => {
   const [isImagesLoaded, setIsImagesLoaded] = useState(false);
   const [currentBreed, setCurrentBreed] = useState('');
   const [isAbleToLoad, setIsAbleToLoad] = useState(true);
-  const [options, setOptions] = useState([]);
   const [cats, setCats] = useState([]);
   const [page, setPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,13 +36,8 @@ const Cats = () => {
       )
 
       onPageLoad(currentBreed)
-  },[breeds])
+  },[breeds, isBreedsReady])
 
-  useEffect(() => {
-      if (isBreedsReady) {
-          setOptions(breeds.map((item, index) => <option value={item.id} key={index}>{item.name}</option>))
-      }
-  },[isBreedsReady, breeds])
 
   const onPageLoad = (breed) => {
       if (breed) {
@@ -95,16 +89,6 @@ const onSelectChange = (e) => {
         )
       .then(
         (data) => {
-            // let newCats = [];
-
-            // data.forEach(cat => {
-            //     let newCat = cats.find(newCat => {
-            //         return cat.id === newCat.id
-            //     })
-            //     if(!newCat) {
-            //         newCats.push(cat)
-            //     }
-            // })
 
             let newCats = data.reduce((acc, cat) => {
                 if (!cats.find(oldCat => { return cat.id === oldCat.id })) {
@@ -132,7 +116,9 @@ const onSelectChange = (e) => {
               <form className={s.breeds}>
                 <select className={s.breedsList} value={currentBreed} onChange={onSelectChange}>
                   <option value=''>Select Breed</option>
-                  {options}
+                  {
+                    breeds.map((item, index) => <option value={item.id} key={index}>{item.name}</option>)
+                  }
                 </select>
               </form>
               <CatCards cats={cats}/>
