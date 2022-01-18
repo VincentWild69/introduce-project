@@ -6,7 +6,7 @@ import { useRef} from 'react';
 
 
 
-const ThemeSwitcher = (props) => {
+const ThemeSwitcher = () => {
 
   const theme = useTheme();
 

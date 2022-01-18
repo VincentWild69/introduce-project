@@ -5,7 +5,7 @@ import s from './Header.module.css';
 
 
 
-const Header = ({isMenuActive, changeMenuStatus, ...props}) => {
+const Header = ({isMenuActive, changeMenuStatus}) => {
 
   return (
     <div className={s.header}>

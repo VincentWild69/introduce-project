@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 
 
-const SvgSelector = ({id, ...props}) => {
+const SvgSelector = ({id}) => {
 
     switch (id) {
       case 'home':

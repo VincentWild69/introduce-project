@@ -2,7 +2,7 @@ import s from './Contacts.module.css';
 
 
 
-const Contacts = (props) => {
+const Contacts = () => {
   return (
     <div className={s.contactsContainer}>
       <h2 className={s.mainTitle}>My contacts</h2>

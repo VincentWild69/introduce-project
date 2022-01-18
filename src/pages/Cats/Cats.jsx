@@ -1,11 +1,11 @@
 import s from './Cats.module.css';
 import { useState, useEffect } from 'react';
 import CatCards from './CatCards/CatCards';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const apiKey = '8198864b-a113-469f-949b-2d1e5b4dcc90';
 
-const Cats = (props) => {
+const Cats = () => {
 
   const [breeds, setBreeds] = useState([]);
   const [isBreedsReady, setIsBreedsReady] = useState(false);
@@ -95,18 +95,27 @@ const onSelectChange = (e) => {
         )
       .then(
         (data) => {
-            let newCats = []
-            data.forEach(cat => {
-                let newCat = cats.find(newCat => {
-                    return cat.id === newCat.id
-                })
-                if(!newCat) {
-                    newCats.push(cat)
-                }
-            })
+            // let newCats = [];
+
+            // data.forEach(cat => {
+            //     let newCat = cats.find(newCat => {
+            //         return cat.id === newCat.id
+            //     })
+            //     if(!newCat) {
+            //         newCats.push(cat)
+            //     }
+            // })
+
+            let newCats = data.reduce((acc, cat) => {
+                if (!cats.find(oldCat => { return cat.id === oldCat.id })) {
+                    return acc = [...acc, cat]
+                } else return acc;
+            }, [])
+
             if(!newCats.length) {
                 setIsAbleToLoad(false)
             }
+
             setCats((oldCats) => ([...oldCats, ...newCats]))
         }
     )

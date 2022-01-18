@@ -4,7 +4,7 @@ import { NavLink, useMatch } from 'react-router-dom';
 
 
 
-const Cat = (props) => {
+const Cat = () => {
 
   const [cat, setCat] = useState(null)
 

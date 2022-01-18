@@ -4,9 +4,9 @@ import { PropTypes } from 'prop-types';
 
 
 
-const CatCard = ({cats, ...props}) => {
+const CatCard = ({cats}) => {
 
-    if(cats.length === 0 || !cats) {
+    if(!cats?.length) {
         return <div className={s.noCats}>No Cats Available</div>
     } else {
         return(

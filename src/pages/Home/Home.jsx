@@ -3,7 +3,7 @@ import SvgSelector from './../../components/SvgSelector/SvgSelector';
 
 
 
-const Home = (props) => {
+const Home = () => {
   return (
     <div className={s.homeContainer}>
       <h2 className={s.mainTitle}>Welcome to my introduce page!</h2>

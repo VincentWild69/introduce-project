@@ -2,7 +2,7 @@ import s from './Quote.module.css';
 import { PropTypes } from 'prop-types';
 
 
-const Quote = ({quote, ...props}) => {
+const Quote = ({quote}) => {
 
   
   return (

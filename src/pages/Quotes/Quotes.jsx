@@ -1,10 +1,9 @@
 import s from './Quotes.module.css';
-// import { quoteAPI } from '../../api/api';
 import { useState, useEffect } from 'react';
 import Quote from './Quote/Quote';
 
 
-const Quotes = (props) => {
+const Quotes = () => {
 
   let [lang, setLang] = useState('ru');
   let [quote, setQuote] = useState('To be or not to be?');

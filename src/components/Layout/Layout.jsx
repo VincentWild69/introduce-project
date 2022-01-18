@@ -5,7 +5,7 @@ import Aside from './../Aside/Aside';
 import Footer from './../Footer/Footer';
 import { useState } from 'react';
 
-const Layout = (props) => {
+const Layout = () => {
 
   let [isMenuActive, setMenuActive] = useState(window.matchMedia('(max-width: 900px)').matches ? false : true);
 
