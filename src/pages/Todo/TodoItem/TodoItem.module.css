@@ -1,0 +1,25 @@
+.todoItemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #19c013;
+  padding: 10px;
+  margin: 20px 0;
+  background-color: var(--theme-default-todoItem-bg-color);
+}
+
+.todoItemTime {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 14px;
+  color: #878787;
+}
+
+.todoItemCloseBtn {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.todoItemCloseBtn svg {
+  fill:#eb7d7d;
+}

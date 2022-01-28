@@ -18,7 +18,10 @@ const Cat = () => {
         .then(
           (response) => response.json())
         .then(
-          (data) => setCat(data))
+          (data) => 
+          {console.log(data)
+          setCat(data)}
+          )
 
   },[])
 

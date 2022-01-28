@@ -1,18 +1,22 @@
 import React, { useContext, useState } from 'react';
 import { changeCssVars } from './../util/changeCssVars';
+import { storage } from './../util/storage';
 
 export const THEME_LIGHT = 'light';
 export const THEME_DARK = 'dark';
 
-const ThemeContext = React.createContext();
+export const ThemeContext = React.createContext();
 
 export const ThemeProvider = ({children, ...props}) => {
 
-  const [theme, setTheme] = useState(THEME_LIGHT);
+  const [theme, setTheme] = useState(storage.getItem('theme') || THEME_LIGHT);
 
-  const change = name => {
-    setTheme(name);
-    changeCssVars(name);
+  changeCssVars(theme);
+
+  const change = theme => {
+    storage.setItem('theme', theme);
+    setTheme(theme);
+    changeCssVars(theme);
   }
 
   return (
@@ -29,5 +33,3 @@ export const ThemeProvider = ({children, ...props}) => {
 }
 
 export default ThemeProvider;
-
-export const useTheme = () => useContext(ThemeContext);

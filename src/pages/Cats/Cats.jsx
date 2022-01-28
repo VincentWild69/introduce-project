@@ -46,7 +46,9 @@ const Cats = () => {
               (response) => {
                   return response.json()}
           ).then(
+              
               (data) => {
+                console.log(data);
                   setCats(data)
                   setIsImagesLoaded(true)
                   setPage(1)

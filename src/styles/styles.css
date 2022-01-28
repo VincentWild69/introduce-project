@@ -39,6 +39,14 @@
   --theme-light-quote-shadow: 7px 7px 21px 3px rgba(135, 135, 103, 0.2);
   --theme-dark-quote-shadow: 7px 7px 21px 3px rgba(148, 193, 236, 0.2);;
   --theme-default-quote-shadow: var(--theme-light-quote-shadow);
+  
+  --theme-light-textarea-bg-color: #ffffef;
+  --theme-dark-textarea-bg-color: #c4bcf5;
+  --theme-default-textarea-bg-color: var(--theme-light-textarea-bg-color);
+  
+  --theme-light-todoItem-bg-color: #fffabd;
+  --theme-dark-todoItem-bg-color: #334154;
+  --theme-default-todoItem-bg-color: var(--theme-light-todoItem-bg-color);
 }
 
 html {
