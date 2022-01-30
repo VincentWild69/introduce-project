@@ -45,8 +45,12 @@
   --theme-default-textarea-bg-color: var(--theme-light-textarea-bg-color);
   
   --theme-light-todoItem-bg-color: #fffabd;
-  --theme-dark-todoItem-bg-color: #334154;
+  --theme-dark-todoItem-bg-color: #2f3c4e;
   --theme-default-todoItem-bg-color: var(--theme-light-todoItem-bg-color);
+
+  --theme-light-todoChekboxArrow-bg-color: #464646;
+  --theme-dark-todoChekboxArrow-bg-color: #b5d2fd;
+  --theme-default-todoChekboxArrow-bg-color: var(--theme-light-todoChekboxArrow-bg-color);
 }
 
 html {

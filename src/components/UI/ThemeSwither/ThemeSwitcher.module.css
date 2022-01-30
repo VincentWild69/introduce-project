@@ -61,7 +61,7 @@
   transform: translateX(30px);
 }
 
-.themeCheckbox:not(:checked)+ .themeSlider > .themeSliderDay {
+.themeCheckbox:not(:checked) + .themeSlider > .themeSliderDay {
   visibility: hidden;
 }
 

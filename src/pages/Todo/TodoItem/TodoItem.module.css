@@ -8,11 +8,23 @@
   background-color: var(--theme-default-todoItem-bg-color);
 }
 
-.todoItemTime {
+.todoItemDetails {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.todoItemDesc {
   margin-top: 10px;
+  margin-right: 20px;
   font-style: italic;
   font-size: 14px;
   color: #878787;
+}
+
+.todoItemDesc span {
+  font-style: normal;
 }
 
 .todoItemCloseBtn {

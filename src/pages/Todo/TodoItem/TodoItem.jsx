@@ -14,7 +14,11 @@ const TodoItem = ({todoItem}) => {
       <div className={s.todoItemContainer}>
         <div>
           <div>{todoItem.text}</div>
-          <div className={s.todoItemTime}>created: {todoItem.time}</div>
+          <div className={s.todoItemDetails}>
+            <div className={s.todoItemDesc}>Created: <span>{todoItem.time}</span></div>
+            <div className={s.todoItemDesc}>Importance: <span>{todoItem.importance}</span></div>
+            <div className={s.todoItemDesc}>Difficult level: <span>{todoItem.difficult}</span></div>
+          </div>
         </div>
         <div onClick={() => dispatch(removeTodo(todoItem.id))} className={s.todoItemCloseBtn}><SvgSelector id='close-btn' /></div>
       </div>

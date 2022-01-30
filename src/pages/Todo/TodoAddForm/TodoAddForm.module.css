@@ -19,12 +19,35 @@ form {
   background-color: var(--theme-default-textarea-bg-color);
 }
 
+.selectsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.todoSelect {
+  width: 131px;
+  padding: 2px;
+  background-color: var(--theme-default-textarea-bg-color);
+}
+
+.todoSelect:focus {
+  outline: none;
+}
+
 .submitBtn {
-  padding: 5px 10px;
+  display: block;
+  padding: 10px 20px;
   cursor: pointer;
   background-color: #b4dcff;
   outline: none;
   border: none;
   font-weight: 500;
   font-size: 18px;
+  margin: 10px auto 0 auto;
 }
+
+div select:first-child {
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+

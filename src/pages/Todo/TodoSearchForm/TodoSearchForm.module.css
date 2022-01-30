@@ -1,0 +1,45 @@
+.filterSearch {
+  padding: 5px 10px;
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.filterSearch:focus {
+  outline: none;
+}
+
+.searchForm {
+  margin-bottom: 10px;
+}
+
+.checkboxes, .checkboxes div {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.checkboxes div {
+  margin-left: 10px;
+}
+
+.checkboxes div:first-child {
+  margin-left: 0;
+}
+
+.filterCheckbox {
+  display: none;
+}
+
+.filterLabel {
+  cursor: pointer;
+}
+
+.filterLabel svg {
+  fill: var(--theme-default-todoChekboxArrow-bg-color);
+}
+
+.filterLabel span {
+  display: inline-flex;
+  height: 23px;
+  margin-left: 5px;
+}
