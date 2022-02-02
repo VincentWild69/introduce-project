@@ -12,7 +12,7 @@ const TodoAddForm = () => {
   const [todoImportance, setTodoImportance] = useState('3');
   const [todoDiff, setTodoDiff] = useState('3');
 
-  const createTime = () => {
+  const createDate = () => {
     return new Date().toLocaleDateString() + '  ' + new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric"})
   }
 
@@ -24,7 +24,7 @@ const TodoAddForm = () => {
       const todo = {
         id: genId(),
         text: todoText,
-        time: createTime(),
+        date: createDate(),
         importance: importanceScale[todoImportance - 1].toLowerCase(),
         importanceLevel: todoImportance,
         difficult: difficultScale[todoDiff - 1].toLowerCase(),
@@ -54,7 +54,7 @@ const TodoAddForm = () => {
               className={s.todoSelect}
               onChange={(e) => setTodoImportance(e.target.value)}
             >
-              {importanceScale.map((e, i) => <option key={e} value={i + 1}>{e}</option>)}
+              {importanceScale.map((e, i, arr) => <option key={e} value={i + 1}>{e}</option>)}
             </select>
         </div>
         <div>
@@ -64,7 +64,7 @@ const TodoAddForm = () => {
             className={s.todoSelect}
             onChange={(e) => setTodoDiff(e.target.value)}
           >
-            {difficultScale.map((e, i) => <option key={e} value={i + 1}>{e}</option>)}
+            {difficultScale.map((e, i, arr) => <option key={e} value={i + 1}>{e}</option>)}
           </select>
         </div>
       </div>

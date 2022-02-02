@@ -39,3 +39,28 @@ export const useFilter = (items, filterProp) => {
     availableItems
   }
 }
+
+export const useSort = (items, sortProp) => {
+
+  const [sortMode, setSortMode] = useState('up');
+
+  const sortedItems = !sortMode
+    ? items
+    : items.slice().sort((a, b) => {
+      if (sortMode === 'up' && a[sortProp] > b[sortProp]) {
+        return 1
+      } else if (sortMode === 'up') {
+        return -1
+      } else if (sortMode === 'down' && a[sortProp] > b[sortProp]) {
+        return -1
+      } else {
+        return 1
+      }
+    })
+
+  return {
+    sortMode,
+    setSortMode,
+    sortedItems
+  }
+}

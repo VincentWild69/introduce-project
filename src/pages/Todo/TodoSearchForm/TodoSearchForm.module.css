@@ -36,10 +36,28 @@
 
 .filterLabel svg {
   fill: var(--theme-default-todoChekboxArrow-bg-color);
+  border-radius: 50%;
 }
 
 .filterLabel span {
   display: inline-flex;
   height: 23px;
   margin-left: 5px;
+}
+
+.arrow-up {
+  transition: 0.3s;
+}
+
+.arrow-down {
+  transform: rotate(180deg);
+  transition: 0.3s;
+}
+
+.activeSortOption{
+  text-decoration: underline;
+}
+
+.activeSortOption svg{
+  background-color: #cf7bbd;
 }

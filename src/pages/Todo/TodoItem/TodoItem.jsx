@@ -15,7 +15,7 @@ const TodoItem = ({todoItem}) => {
         <div>
           <div>{todoItem.text}</div>
           <div className={s.todoItemDetails}>
-            <div className={s.todoItemDesc}>Created: <span>{todoItem.time}</span></div>
+            <div className={s.todoItemDesc}>Created: <span>{todoItem.date}</span></div>
             <div className={s.todoItemDesc}>Importance: <span>{todoItem.importance}</span></div>
             <div className={s.todoItemDesc}>Difficult level: <span>{todoItem.difficult}</span></div>
           </div>
