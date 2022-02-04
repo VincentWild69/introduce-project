@@ -7,17 +7,7 @@ import { useState } from 'react';
 
 const cx = classNames.bind(s);
 
-const TodoSearchForm = ({enteredSearchValue, setEnteredSearchValue, currentSortParam, setCurrentSortParam, sortMode, setSortMode}) => {
-
-  const sortConfig = {
-    date: 'up',
-    importance: 'up',
-    difficult: 'up',
-  }
-
-  console.log(currentSortParam)
-
-  const sortCheckboxes = ['date', 'importance', 'difficult'];
+const TodoSearchForm = ({enteredSearchValue, setEnteredSearchValue, currentSortParam, setCurrentSortParam, sortMode, setSortMode, sortConfig}) => {
 
 
   const [sortValues, setSortValues] = useState(sortConfig);
@@ -46,7 +36,7 @@ const TodoSearchForm = ({enteredSearchValue, setEnteredSearchValue, currentSortP
       </div>
       <div className={cx('filterFormBlock', 'checkboxes')}>
         <div>Sort by:{" "}</div>
-        {sortCheckboxes.map(item => {
+        {Object.keys(sortConfig).map(item => {
           return <div key={item} className={cx({activeSortOption: currentSortParam.includes(item)})}>
                   {capitalizeFirstLetter(item)}{' '}
                   <label className={s.filterLabel}>
@@ -67,10 +57,15 @@ const TodoSearchForm = ({enteredSearchValue, setEnteredSearchValue, currentSortP
 }
 
 
-// TodoSearchForm.propTypes = {
-//   enteredSearchValue: PropTypes.string,
-//   setEnteredSearchValue: PropTypes.func,
-// }
+TodoSearchForm.propTypes = {
+  enteredSearchValue: PropTypes.string,
+  setEnteredSearchValue: PropTypes.func,
+  currentSortParam: PropTypes.string,
+  setCurrentSortParam: PropTypes.func,
+  sortMode: PropTypes.string,
+  setSortMode: PropTypes.func,
+  sortConfig: PropTypes.object
+}
 
 
 export default TodoSearchForm;

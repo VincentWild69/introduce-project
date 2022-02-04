@@ -12,13 +12,17 @@ const Todo = () => {
 
   const todoList = useSelector(state => state.todos.todosItems)
 
+  const sortConfig = {
+    date: 'up',
+    importance: 'up',
+    difficult: 'up',
+  }
+  
   const {
     enteredSearchValue,
     setEnteredSearchValue,
     availableItems
   } = useFilter(todoList, 'text');
-
-
 
   const [currentSortParam, setCurrentSortParam] = useState('date')
 
@@ -33,17 +37,15 @@ const Todo = () => {
   return (
     <section className={s.todoSecWrapper}>
       <h2 className={s.todoMainTitle}>Todo list</h2>
-      <button onClick={() => console.log(sortMode)}>ddd</button>
       <TodoAddForm />
       <TodoSearchForm 
-        setEnteredSearchValue={setEnteredSearchValue}
         enteredSearchValue={enteredSearchValue}
-        // sortValues={sortValues}
-        // setSortValues={setSortValues}
+        setEnteredSearchValue={setEnteredSearchValue}
         currentSortParam={currentSortParam}
         setCurrentSortParam={setCurrentSortParam}
         sortMode={sortMode}
         setSortMode={setSortMode}
+        sortConfig={sortConfig}
       />
       <div className={s.todoContainer}>
         {

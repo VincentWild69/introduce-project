@@ -1,11 +1,13 @@
 .filterSearch {
   padding: 5px 10px;
   display: inline-block;
+  border: 1px solid #444444;
   border-radius: 8px;
 }
 
 .filterSearch:focus {
-  outline: none;
+  outline: 1px solid #cf7bbd;
+  border-color:#cf7bbd;
 }
 
 .searchForm {

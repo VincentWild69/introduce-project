@@ -54,7 +54,7 @@ const TodoAddForm = () => {
               className={s.todoSelect}
               onChange={(e) => setTodoImportance(e.target.value)}
             >
-              {importanceScale.map((e, i, arr) => <option key={e} value={i + 1}>{e}</option>)}
+              {importanceScale.map((e, i) => <option key={e} value={i + 1}>{e}</option>)}
             </select>
         </div>
         <div>
@@ -64,7 +64,7 @@ const TodoAddForm = () => {
             className={s.todoSelect}
             onChange={(e) => setTodoDiff(e.target.value)}
           >
-            {difficultScale.map((e, i, arr) => <option key={e} value={i + 1}>{e}</option>)}
+            {difficultScale.map((e, i) => <option key={e} value={i + 1}>{e}</option>)}
           </select>
         </div>
       </div>
