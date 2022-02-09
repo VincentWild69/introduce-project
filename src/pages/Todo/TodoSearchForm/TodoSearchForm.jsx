@@ -3,12 +3,14 @@ import classNames from 'classnames/bind';
 import { PropTypes } from 'prop-types';
 import SvgSelector from './../../../components/SvgSelector/SvgSelector';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 
 const cx = classNames.bind(s);
 
 const TodoSearchForm = ({enteredSearchValue, setEnteredSearchValue, currentSortParam, setCurrentSortParam, sortMode, setSortMode, sortConfig}) => {
 
+  const { t } = useTranslation();
 
   const [sortValues, setSortValues] = useState(sortConfig);
 
@@ -30,15 +32,15 @@ const TodoSearchForm = ({enteredSearchValue, setEnteredSearchValue, currentSortP
           type="search"
           value={enteredSearchValue}
           onChange={(e) => setEnteredSearchValue(e.target.value)}
-          placeholder="search todo"
+          placeholder={t('todo.search-placeholder')}
           className={s.filterSearch}
         />
       </div>
       <div className={cx('filterFormBlock', 'checkboxes')}>
-        <div>Sort by:{" "}</div>
+        <div>{t('todo.sort-by')}:{" "}</div>
         {Object.keys(sortConfig).map(item => {
           return <div key={item} className={cx({activeSortOption: currentSortParam.includes(item)})}>
-                  {capitalizeFirstLetter(item)}{' '}
+                  {capitalizeFirstLetter(t(`todo.${item}`))}{' '}
                   <label className={s.filterLabel}>
                     <input
                       type='checkbox'

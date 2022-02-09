@@ -6,13 +6,18 @@ import App from './App';
 import ThemeProvider from './context/ThemeProvider';
 import './styles/styles.css'
 import { store } from './store/store';
+import { Suspense } from 'react';
+import './i18n';
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider>
-          <App />
+          <Suspense fallback='loading'>
+            <App />
+          </Suspense>
         </ThemeProvider>
       </BrowserRouter>
     </Provider>

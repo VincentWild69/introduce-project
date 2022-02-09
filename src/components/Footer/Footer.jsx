@@ -1,8 +1,12 @@
 import s from './Footer.module.css';
+import { useTranslation } from 'react-i18next';
 
 
 
 const Footer = () => {
+
+  const {t} = useTranslation();
+
   return (
     <footer className={s.footer}>
       <div className={s.footerGit}>
@@ -14,7 +18,7 @@ const Footer = () => {
         </a>
       </div>
       <div className={s.footerInfo}>
-        <span>Alexey Kuznietsov, </span>
+        <span>{t('common.my-fullname')}, </span>
         <span> 2021</span>
       </div>
     </footer>

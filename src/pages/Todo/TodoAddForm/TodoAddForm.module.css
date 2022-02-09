@@ -46,7 +46,7 @@ form {
   margin: 10px auto 0 auto;
 }
 
-div select:first-child {
+div .todoSelect:first-child {
   margin-right: 15px;
   margin-bottom: 15px;
 }

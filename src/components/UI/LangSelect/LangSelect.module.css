@@ -1,0 +1,12 @@
+.langSelect {
+  background-color: var(--theme-default-textarea-bg-color);
+  padding: 2px;
+  font-size: 18px;
+  border-radius: 3px;
+  font-weight: 500;
+  margin-right: 15px;
+}
+
+.langSelect:focus {
+  outline: none;
+}

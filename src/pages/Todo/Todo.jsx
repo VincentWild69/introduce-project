@@ -6,9 +6,12 @@ import TodoItem from './TodoItem/TodoItem';
 import TodoSearchForm from './TodoSearchForm/TodoSearchForm';
 import React from 'react';
 import { useFilter, useSort } from './../../hooks/hooks';
+import { useTranslation } from 'react-i18next';
 
 
 const Todo = () => {
+
+  const { t } = useTranslation();
 
   const todoList = useSelector(state => state.todos.todosItems)
 
@@ -32,11 +35,23 @@ const Todo = () => {
     sortedItems
   } = useSort(availableItems, currentSortParam)
 
-
+  // React.useEffect(() => {
+  //   fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/413187`).then(
+  //     res => {
+  //       if (res.ok) {
+  //         return res.json()
+  //       } else {
+  //         console.log('errrrrr')
+  //       }
+  //     }
+  //   ).then(
+  //     data => console.log(data)
+  //   )
+  // }, [])
 
   return (
     <section className={s.todoSecWrapper}>
-      <h2 className={s.todoMainTitle}>Todo list</h2>
+      <h2 className={s.todoMainTitle}>{t('todo.todo-h1')}</h2>
       <TodoAddForm />
       <TodoSearchForm 
         enteredSearchValue={enteredSearchValue}
@@ -53,7 +68,7 @@ const Todo = () => {
           ? sortedItems.map(todoItem => {
             return <TodoItem key={todoItem.id} todoItem={todoItem} />
           })
-          : <div style={{textAlign: 'center'}}>No todos</div>
+          : <div style={{textAlign: 'center', marginTop: '20px'}}>{t('todo.no-todos')}</div>
         }
       </div>
     </section>

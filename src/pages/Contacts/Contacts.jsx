@@ -1,11 +1,14 @@
 import s from './Contacts.module.css';
-
+import { useTranslation } from 'react-i18next';
 
 
 const Contacts = () => {
+
+  const { t } = useTranslation();
+  
   return (
     <div className={s.contactsContainer}>
-      <h2 className={s.mainTitle}>My contacts</h2>
+      <h2 className={s.mainTitle}>{t('contacts.h1-title')}</h2>
       <ul className={s.contactList}>
         <li className={s.contactItem}>
           Telegram:&nbsp;
