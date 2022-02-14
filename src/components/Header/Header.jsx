@@ -4,6 +4,7 @@ import s from "./Header.module.css";
 import classNames from "classnames/bind";
 import LangSelect from "../UI/LangSelect/LangSelect";
 import Greeting from "./Greeting/Greeting";
+import { NavLink } from "react-router-dom";
 
 const cx = classNames.bind(s);
 
@@ -17,6 +18,7 @@ const Header = ({ isMenuActive, changeMenuStatus }) => {
         <span className={s.burgerSpan}></span>
       </div>
       <div className={s.headerTools}>
+        <NavLink to='/adm'>adm</NavLink>
         <LangSelect />
         <ThemeSwitcher />
         <Greeting />

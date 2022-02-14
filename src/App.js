@@ -10,9 +10,20 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import NotFoundPgae from './components/NotFoundPage/NotFoundPage';
 import AdminTools from './components/AdminTools/AdminTools';
+import React from 'react';
+import { getUsersList } from './store/thunks/authThunks';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsersList());
+  }, [])
+
   return (
 
       <div className='container'>

@@ -4,7 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import classNames from 'classnames/bind';
 import { Link, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { loginUser, setCustomError } from '../../store/slices/authSlice';
 
 
 const cx = classNames.bind(s);
@@ -22,13 +24,43 @@ const validationSchema = yup.object({
 
 const Login = () => {
 
+  const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
+  const users = useSelector(state => state.auth.users);
+  const loginError = useSelector(state => state.auth.error.login);
+  const passwordError = useSelector(state => state.auth.error.password);
+
+  const clearError = (errorName) => {
+    dispatch(setCustomError({name: errorName, error: null}));
+  }
+
+  useEffect(() => {
+    return () => {
+      clearError('login');
+      clearError('password');
+    }
+  }, [])
 
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur'
   });
-  const onSubmit = data => console.log(data);
+  
+  const onSubmit = data => {
+
+    let userExist = users.find(el => el.email === data.email);
+
+    if (!userExist) {
+      dispatch(setCustomError({name: 'login', error: 'No such user exists!'}))
+    } else {
+      let truePassword = userExist.password === data.password;
+      if (!truePassword) {
+        dispatch(setCustomError({name: 'password', error: 'Wrong password!'}))
+      } else {
+        dispatch(loginUser(userExist))
+      }
+    }
+  };
 
   return (
 
@@ -47,9 +79,13 @@ const Login = () => {
               {...register("email")}
               className={cx('loginInput', {wrongValue: errors.email})}
               placeholder={`enter your email...`}
+              onChange={() => clearError('login')}
               />
               <div className={s.error}>
                 {errors.email?.message}
+              </div>
+              <div className={s.error}>
+                {loginError}
               </div>
             </label>
 
@@ -60,9 +96,13 @@ const Login = () => {
               className={cx('loginInput', {wrongValue: errors.password})}
               type={`password`} 
               placeholder={`enter your password...`}
+              onChange={() => clearError('password')}
               />
               <div className={s.error}>
                 {errors.password?.message}
+              </div>
+              <div className={s.error}>
+                {passwordError}
               </div>
             </label>
 

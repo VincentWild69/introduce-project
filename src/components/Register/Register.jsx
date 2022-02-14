@@ -6,6 +6,9 @@ import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { createUser, updateUsersBin } from '../../store/thunks/authThunks';
+import { useDispatch } from 'react-redux';
+import { setError } from '../../store/slices/authSlice';
 
 
 const cx = classNames.bind(s);
@@ -30,16 +33,38 @@ const validationSchema = yup.object({
 
 });
 
-<Navigate replace to="/" />
+
 const Register = () => {
 
+  const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
+  const users = useSelector(state => state.auth.users);
+  const userError = useSelector(state => state.auth.error.message);
+
+  useEffect(() => {
+    updateUsersBin(users);
+    return () => dispatch(setError(null))
+  }, [users])
 
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur'
   });
-  const onSubmit = data => console.log(data);
+  
+  const onSubmit = data => {
+
+    let newUser = users.find(el => el.email === data.email);
+
+    if (newUser) {
+      dispatch(setError('User this this email already exist!'));
+    } else {
+      dispatch(createUser({
+        name: data.name, 
+        email: data.email, 
+        password: data.password
+      }));
+    }
+  };
 
   return (
 
@@ -71,9 +96,13 @@ const Register = () => {
               {...register("email")}
               className={cx('registerInput', {wrongValue: errors.email})}
               placeholder={`enter your email...`}
+              onChange={() => {if (userError) dispatch(setError(null))}}
               />
               <div className={s.error}>
                 {errors.email?.message}
+              </div>              
+              <div className={s.error}>
+                {userError}
               </div>
             </label>
 
