@@ -20,6 +20,7 @@ const TodoAddForm = () => {
   }
 
   const importanceScale = [`${t('todo.low')}`, `${t('todo.under-average')}`, `${t('todo.average')}`, `${t('todo.high')}`, `${t('todo.highest')}`];
+  
   const difficultScale = [`${t('todo.easier')}`, `${t('todo.easy')}`, `${t('todo.medium')}`, `${t('todo.hard')}`, `${t('todo.very-hard')}`];
 
   const addTodoHandler = () => {
@@ -41,7 +42,7 @@ const TodoAddForm = () => {
 
 
   return (
-    <form onSubmit={(e) => {e.preventDefault()}}>
+    <form className={s.todoAddForm} onSubmit={(e) => {e.preventDefault()}}>
       <textarea 
         type='text'
         placeholder={t('todo.textarea-placeholder')}

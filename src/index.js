@@ -8,6 +8,7 @@ import './styles/styles.css'
 import { store } from './store/store';
 import { Suspense } from 'react';
 import './i18n';
+import MainLoader from './components/MainLoader/MainLoader';
 
 
 ReactDOM.render(
@@ -15,7 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider>
-          <Suspense fallback='loading'>
+          <Suspense fallback={<MainLoader />}>
             <App />
           </Suspense>
         </ThemeProvider>

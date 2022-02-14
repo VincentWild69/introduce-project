@@ -1,6 +1,7 @@
 {
   "common": {
-    "my-fullname": "Alexey Kuznietsov"
+    "my-fullname": "Alexey Kuznietsov",
+    "page-not-exist": "Page does not exist "
   },
   "menu": {
     "home": "Home",

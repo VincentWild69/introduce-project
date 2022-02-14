@@ -1,0 +1,21 @@
+.loaderWrapper {
+  height: 100vh;
+  background-color: var(--theme-default-main-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loaderSvg {
+  height: 140px;
+  width: 140px;
+  fill: #4fc56b;
+}
+
+.loaderText {
+  text-align: center;
+  color: #4fc56b;
+  font-size: 35px;
+  font-weight: 600;
+  margin-top: 15px;
+}

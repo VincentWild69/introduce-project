@@ -1,0 +1,20 @@
+.nfpContainer {
+  height: 100vh;
+  background-color: var(--theme-default-main-bg-color);
+  color: var(--theme-default-text-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.nfpContent {
+  position: absolute;
+  top: calc(40% - 10px);
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.nfpContent div {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,16 @@
+.loaderWrapper {
+  background-color: transparent;
+  position: relative;
+  height: 100px;
+}
+
+.loaderBody {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+}
+
+.loaderSvg {
+  height: 40px;
+  width: 40px;
+}

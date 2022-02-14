@@ -1,0 +1,28 @@
+.greetingsContainer {
+  margin-left: 25px;
+}
+
+.loginLink {
+  color: var(--theme-default-text-color);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.loginLink:hover {
+  color: #378f51;
+}
+
+.greetingsHello {
+  font-size: 18px;
+}
+
+.logoutBtn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 3px;
+  font-size: 16px;
+  color: #299370;
+}
