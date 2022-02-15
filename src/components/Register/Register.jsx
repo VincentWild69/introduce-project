@@ -3,11 +3,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import classNames from 'classnames/bind';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { createUser, updateUsersBin } from '../../store/thunks/authThunks';
-import { useDispatch } from 'react-redux';
+import { createUser, updateUsersBin, getUsersList } from '../../store/thunks/authThunks';
 import { setError } from '../../store/slices/authSlice';
 
 
@@ -15,6 +14,7 @@ const cx = classNames.bind(s);
 
 const validationSchema = yup.object({
   name: yup.string()
+  .trim()
   .max(20, 'Too Long!')
   .required('Enter your name!'),
   
@@ -23,6 +23,7 @@ const validationSchema = yup.object({
   .required('Enter your email!'),
 
   password: yup.string()
+  .trim()
   .min(6, 'The password must contain at least 6 characters')
   .max(30, 'Too Long!')
   .required('Enter your password!'),
@@ -42,9 +43,15 @@ const Register = () => {
   const userError = useSelector(state => state.auth.error.message);
 
   useEffect(() => {
+    dispatch(getUsersList());
+  }, [])
+
+  useEffect(() => {
     updateUsersBin(users);
+    console.log('ren')
     return () => dispatch(setError(null))
   }, [users])
+
 
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(validationSchema),
@@ -53,15 +60,16 @@ const Register = () => {
   
   const onSubmit = data => {
 
-    let newUser = users.find(el => el.email === data.email);
+    let newUser = users.find(user => user.email === data.email);
 
     if (newUser) {
       dispatch(setError('User this this email already exist!'));
     } else {
+      const {name, email, password} = data;
       dispatch(createUser({
-        name: data.name, 
-        email: data.email, 
-        password: data.password
+        name,
+        email,
+        password
       }));
     }
   };

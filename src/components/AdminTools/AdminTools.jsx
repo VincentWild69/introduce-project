@@ -5,6 +5,7 @@ import { getUsersList, updateUsersBin } from "../../store/thunks/authThunks";
 import { mainBin } from "../../constants";
 import { apiKey } from './../../constants';
 import { useState } from 'react';
+import { storage } from './../../util/storage';
 
 
 
@@ -12,6 +13,7 @@ const AdminTools = () => {
 
   const dispatch = useDispatch();
   const users = useSelector(state => state.auth.users);
+  const cu = useSelector(state => state.auth.currentUser);
   const error = useSelector(state => state.auth.error.message);
   
   const getAll = () => {
@@ -20,7 +22,7 @@ const AdminTools = () => {
   }
 
   const deleteBin = () => {
-    axios.delete(`https://json.extendsclass.com/bin/84aa52cfec83`)
+    axios.delete(`https://json.extendsclass.com/bin/ca61e24f5947`)
       .then((res) => console.log(res));
   };
 
@@ -39,7 +41,7 @@ const AdminTools = () => {
   
   const show = () => {
     axios
-      .get(`https://json.extendsclass.com/bin/${mainBin}`)
+      .get(`https://json.extendsclass.com/bin/c422400408fa`)
       .then((res) => console.log(res.data));
   };
 
@@ -78,7 +80,11 @@ const AdminTools = () => {
       });
   };
 
- 
+  const showLS = () => {
+    console.log(localStorage)
+    // console.log(storage.getItem('curUser'))
+    // localStorage.removeItem('curUser')
+  }
 
   return (
       <div className={s.admContainer}>
@@ -89,9 +95,11 @@ const AdminTools = () => {
           <button onClick={getUsers}>getUsers</button>
           <button onClick={show}>showBin</button>
           <button onClick={() => updUsers(users)}>upd</button>
+          <button onClick={() => console.log(cu)}>showCU</button>
 
 
           <button onClick={() => console.log(users)}>show users store</button>
+          <button onClick={showLS}>localStorage</button>
 
 
           <div className={s.content}>

@@ -7,6 +7,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { loginUser, setCustomError } from '../../store/slices/authSlice';
+import { getUsersList } from '../../store/thunks/authThunks';
 
 
 const cx = classNames.bind(s);
@@ -35,6 +36,8 @@ const Login = () => {
   }
 
   useEffect(() => {
+    dispatch(getUsersList());
+
     return () => {
       clearError('login');
       clearError('password');
@@ -48,7 +51,7 @@ const Login = () => {
   
   const onSubmit = data => {
 
-    let userExist = users.find(el => el.email === data.email);
+    let userExist = users.find(user => user.email === data.email);
 
     if (!userExist) {
       dispatch(setCustomError({name: 'login', error: 'No such user exists!'}))
@@ -57,7 +60,8 @@ const Login = () => {
       if (!truePassword) {
         dispatch(setCustomError({name: 'password', error: 'Wrong password!'}))
       } else {
-        dispatch(loginUser(userExist))
+        const {id, name, email} = userExist;
+        dispatch(loginUser({id, name, email}))
       }
     }
   };

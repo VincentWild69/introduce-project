@@ -11,9 +11,10 @@ import Register from './components/Register/Register';
 import NotFoundPgae from './components/NotFoundPage/NotFoundPage';
 import AdminTools from './components/AdminTools/AdminTools';
 import React from 'react';
-import { getUsersList } from './store/thunks/authThunks';
+import { autoLogin, getUsersList } from './store/thunks/authThunks';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { storage } from './util/storage';
 
 
 function App() {
@@ -21,8 +22,14 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsersList());
+    
+    let currentId = storage.getItem('curUser');
+
+    if (currentId) {
+      dispatch(autoLogin(currentId))
+    }
   }, [])
+
 
   return (
 
