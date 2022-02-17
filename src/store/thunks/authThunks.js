@@ -13,7 +13,7 @@ export const getUsersList = () => (dispatch) => {
       .catch( error => {
         if (error.response) {
           dispatch(setError(`Cant fetch users. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {dispatch(setError(error.message))}
+        } else {dispatch(setError(`Cant fetch users. ${error}`))}
       });
 }
 
@@ -47,23 +47,23 @@ export const createUser = (payload) => (dispatch) => {
       .catch( error => {
         if (error.response) {
           dispatch(setError(`Cant create user. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {dispatch(setError(error.message))}
+        } else {dispatch(setError(`Cant create user. ${error}`))}
       });
 }
 
-export const updateUsersBin = (updUsers) => {
+export const updateUsersBin = (updUsers) => (dispatch) => {
   axios
     .patch(`https://json.extendsclass.com/bin/${mainBin}`, {
         "users": updUsers
       })
       .catch( error => {
         if (error.response) {
-          console.log(`Cant update user. Error ${error.response.status}: ${error.response.data.message}`);
-        } else {console.log(error.message)}
+          dispatch(setError(`Cant update user. Error ${error.response.status}: ${error.response.data.message}`));
+        } else {dispatch(setError(`Cant update user. ${error}`))}
       });
 }
 
-export const autoLogin = (payload) => (dispatch) => {
+export const loginThunk = (payload) => (dispatch) => {
   axios
   .get(`https://json.extendsclass.com/bin/${payload}`)
   .then(res => {if (res) {
@@ -73,7 +73,10 @@ export const autoLogin = (payload) => (dispatch) => {
   .catch( error => {
     if (error.response) {
       dispatch(setError(`Cant login. Error ${error.response.status}: ${error.response.data.message}`));
-    } else {dispatch(setError(error.message))}
+      if (error.response.status.toString() === '404') {
+        localStorage.removeItem('curUser')
+      }
+    } else {dispatch(setError(`Cant login. ${error}`))}
   });
 
 }

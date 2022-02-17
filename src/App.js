@@ -11,24 +11,38 @@ import Register from './components/Register/Register';
 import NotFoundPgae from './components/NotFoundPage/NotFoundPage';
 import AdminTools from './components/AdminTools/AdminTools';
 import React from 'react';
-import { autoLogin, getUsersList } from './store/thunks/authThunks';
+import { loginThunk } from './store/thunks/authThunks';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { storage } from './util/storage';
+import { useSelector } from 'react-redux';
+import ModalWindow from "./components/UI/ModalWindow/ModalWindow";
+import { setError } from "./store/slices/authSlice";
+import ErrorMessageModal from "./components/UI/ErrorMessageModal/ErrorMessageModal";
 
 
 function App() {
 
   const dispatch = useDispatch();
+  const error = useSelector(state => state.auth.error.message)
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    
-    let currentId = storage.getItem('curUser');
+    error ? setModal(true) : setModal(false)
+  }, [error])
 
+  useEffect(() => { 
+    let currentId = storage.getItem('curUser');
     if (currentId) {
-      dispatch(autoLogin(currentId))
+      dispatch(loginThunk(currentId))
     }
   }, [])
+
+
+  const clearAndCloseError = () => {
+    setModal(false);
+    setTimeout(() => {dispatch(setError(null))}, 100);
+  }
 
 
   return (
@@ -48,6 +62,10 @@ function App() {
           </Route>
           <Route path='*' element={<NotFoundPgae />} />
         </Routes>
+
+        <ModalWindow visible={modal} setVisible={clearAndCloseError}>
+          <ErrorMessageModal error={error} />
+        </ModalWindow>
       </div>
 
   );

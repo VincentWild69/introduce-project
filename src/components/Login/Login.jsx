@@ -5,9 +5,8 @@ import * as yup from 'yup';
 import classNames from 'classnames/bind';
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { loginUser, setCustomError } from '../../store/slices/authSlice';
-import { getUsersList } from '../../store/thunks/authThunks';
+import { useEffect, useState } from 'react';
+import { getUsersList, loginThunk } from '../../store/thunks/authThunks';
 
 
 const cx = classNames.bind(s);
@@ -28,20 +27,12 @@ const Login = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
   const users = useSelector(state => state.auth.users);
-  const loginError = useSelector(state => state.auth.error.login);
-  const passwordError = useSelector(state => state.auth.error.password);
+  const [loginError, setLoginError] = useState(null);
+  const [passwordError, setpasswordError] = useState(null);
 
-  const clearError = (errorName) => {
-    dispatch(setCustomError({name: errorName, error: null}));
-  }
 
   useEffect(() => {
     dispatch(getUsersList());
-
-    return () => {
-      clearError('login');
-      clearError('password');
-    }
   }, [])
 
   const { register, handleSubmit, formState:{ errors } } = useForm({
@@ -54,14 +45,13 @@ const Login = () => {
     let userExist = users.find(user => user.email === data.email);
 
     if (!userExist) {
-      dispatch(setCustomError({name: 'login', error: 'No such user exists!'}))
+      setLoginError('No such user exists!')
     } else {
       let truePassword = userExist.password === data.password;
       if (!truePassword) {
-        dispatch(setCustomError({name: 'password', error: 'Wrong password!'}))
+        setpasswordError('Wrong password!')
       } else {
-        const {id, name, email} = userExist;
-        dispatch(loginUser({id, name, email}))
+        dispatch(loginThunk(userExist.id))
       }
     }
   };
@@ -83,7 +73,7 @@ const Login = () => {
               {...register("email")}
               className={cx('loginInput', {wrongValue: errors.email})}
               placeholder={`enter your email...`}
-              onChange={() => clearError('login')}
+              onChange={() => {if (loginError) setLoginError(null)}}
               />
               <div className={s.error}>
                 {errors.email?.message}
@@ -100,7 +90,7 @@ const Login = () => {
               className={cx('loginInput', {wrongValue: errors.password})}
               type={`password`} 
               placeholder={`enter your password...`}
-              onChange={() => clearError('password')}
+              onChange={() => {if (passwordError) setpasswordError(null)}}
               />
               <div className={s.error}>
                 {errors.password?.message}

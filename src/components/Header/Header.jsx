@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 const cx = classNames.bind(s);
 
 const Header = ({ isMenuActive, changeMenuStatus }) => {
+
   return (
     <div className={s.header}>
       <div
@@ -17,6 +18,8 @@ const Header = ({ isMenuActive, changeMenuStatus }) => {
       >
         <span className={s.burgerSpan}></span>
       </div>
+
+
       <div className={s.headerTools}>
         <NavLink to='/adm'>adm</NavLink>
         <LangSelect />

@@ -22,7 +22,7 @@ const AdminTools = () => {
   }
 
   const deleteBin = () => {
-    axios.delete(`https://json.extendsclass.com/bin/ca61e24f5947`)
+    axios.delete(`https://json.extendsclass.com/bin/87c51e8ab570`)
       .then((res) => console.log(res));
   };
 
@@ -41,7 +41,7 @@ const AdminTools = () => {
   
   const show = () => {
     axios
-      .get(`https://json.extendsclass.com/bin/c422400408fa`)
+      .get(`https://json.extendsclass.com/bin/${mainBin}`)
       .then((res) => console.log(res.data));
   };
 
@@ -54,10 +54,22 @@ const AdminTools = () => {
     updateUsersBin(users)
   }
 
+  const us = ['0af7bf3d9090', '6e9baf131f83', '809a57c31542', 'a4d431918b95', 'bb08408770e2', 'bceca3556017', 'c422400408fa', 'e74d0d692074']
+  let result = [];
+
+  const fill = () => {
+
+    us.forEach(e=> {
+      axios
+      .get(`https://json.extendsclass.com/bin/${e}`)
+      .then((res) => result.push(res.data))
+    })
+  }
+
 
   const patchBin = () => {
     axios
-      .patch(`https://json.extendsclass.com/bin/c3fd89a9b063`, {
+      .patch(`https://json.extendsclass.com/bin/2df`, {
           "users": [{
             id: 'dsfdsf4565',
             name: "Ivan",
@@ -94,12 +106,16 @@ const AdminTools = () => {
           <button onClick={patchBin}>patchBin</button>
           <button onClick={getUsers}>getUsers</button>
           <button onClick={show}>showBin</button>
-          <button onClick={() => updUsers(users)}>upd</button>
+          <button onClick={() =>         axios
+        .patch(`https://json.extendsclass.com/bin/${mainBin}`, {
+          "users": result
+      })}>upd</button>
           <button onClick={() => console.log(cu)}>showCU</button>
 
 
           <button onClick={() => console.log(users)}>show users store</button>
           <button onClick={showLS}>localStorage</button>
+          <button onClick={fill}>R</button>
 
 
           <div className={s.content}>

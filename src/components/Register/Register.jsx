@@ -5,9 +5,8 @@ import * as yup from 'yup';
 import classNames from 'classnames/bind';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createUser, updateUsersBin, getUsersList } from '../../store/thunks/authThunks';
-import { setError } from '../../store/slices/authSlice';
 
 
 const cx = classNames.bind(s);
@@ -40,16 +39,14 @@ const Register = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
   const users = useSelector(state => state.auth.users);
-  const userError = useSelector(state => state.auth.error.message);
+  const [userError, setUserError] = useState(null);
 
   useEffect(() => {
     dispatch(getUsersList());
   }, [])
 
   useEffect(() => {
-    updateUsersBin(users);
-    console.log('ren')
-    return () => dispatch(setError(null))
+    dispatch(updateUsersBin(users));
   }, [users])
 
 
@@ -60,17 +57,14 @@ const Register = () => {
   
   const onSubmit = data => {
 
-    let newUser = users.find(user => user.email === data.email);
+    let oldUser = users.find(user => user.email === data.email);
 
-    if (newUser) {
-      dispatch(setError('User this this email already exist!'));
+    if (oldUser) {
+      setUserError('User this this email already exist!')
     } else {
-      const {name, email, password} = data;
-      dispatch(createUser({
-        name,
-        email,
-        password
-      }));
+      const userInfo = {...data};
+      delete userInfo.confirmPassword
+      dispatch(createUser(userInfo));
     }
   };
 
@@ -104,7 +98,7 @@ const Register = () => {
               {...register("email")}
               className={cx('registerInput', {wrongValue: errors.email})}
               placeholder={`enter your email...`}
-              onChange={() => {if (userError) dispatch(setError(null))}}
+              onChange={() => {if (userError) setUserError(null)}}
               />
               <div className={s.error}>
                 {errors.email?.message}

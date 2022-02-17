@@ -8,9 +8,7 @@ const initialState = {
   isAuth: false,
   error: {
     message: null,
-    status: null,
-    login: null,
-    password: null
+    status: null
   },
   isLoading: false
 }

@@ -51,6 +51,7 @@
   --theme-light-todoChekboxArrow-bg-color: #464646;
   --theme-dark-todoChekboxArrow-bg-color: #b5d2fd;
   --theme-default-todoChekboxArrow-bg-color: var(--theme-light-todoChekboxArrow-bg-color);
+
 }
 
 html {
@@ -72,6 +73,21 @@ body {
 
 img {
   display: block;
+}
+
+p, button {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  outline:none;
+  cursor:pointer;
 }
 
 .container {
