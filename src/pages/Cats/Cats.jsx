@@ -1,137 +1,151 @@
-import s from './Cats.module.css';
-import { useState, useEffect } from 'react';
-import CatCards from './CatCards/CatCards';
-import { useSearchParams } from 'react-router-dom';
+import s from "./Cats.module.css";
+import { useState, useEffect } from "react";
+import CatCards from "./CatCards/CatCards";
+import { useSearchParams } from "react-router-dom";
+import Loader from "./../../components/Loader/MainLoader/Loader";
 
-const apiKey = '8198864b-a113-469f-949b-2d1e5b4dcc90';
+const apiKey = "8198864b-a113-469f-949b-2d1e5b4dcc90";
 
 const Cats = () => {
-
-  const [breeds, setBreeds] = useState([]);
-  const [isBreedsReady, setIsBreedsReady] = useState(false);
-  const [isImagesLoaded, setIsImagesLoaded] = useState(false);
+  const [breeds, setBreeds] = useState(null);
+	const [isFetching, setIsFetching] = useState(true);
   const [currentBreed, setCurrentBreed] = useState('');
-  const [isAbleToLoad, setIsAbleToLoad] = useState(true);
+  const [isMoreCats, setIsMoreCats] = useState(false);
   const [cats, setCats] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
+	const [isFetchingMore, setIsFetchingMore] = useState(false);
+
+	const portionSize = 5;
+
+
+	// if (searchParams.has('breed')) {
+	// 	setCurrentBreed(searchParams.get('breed'));
+	// }
 
 
   useEffect(() => {
-    
-      setCurrentBreed(() => {
-          let breed = searchParams.get('breed');
-          if (breed) return breed;
-          return '';
-      })
 
-      fetch(`https://api.thecatapi.com/v1/breeds?api_key=${apiKey}`)
-      .then(
-          (response) => response.json()
-      )
-      .then(
-          (data) => {
-              breeds.length === 0 ? setBreeds(data) : setIsBreedsReady(true);
-          }
-      )
+		let curBreed = '';
 
-      onPageLoad(currentBreed)
-  },[breeds, isBreedsReady])
+		if (searchParams.has('breed')) {
+			curBreed = searchParams.get('breed');
+			setCurrentBreed(curBreed);
+		}
+
+    fetchCats(currentBreed);
+		
+  }, [searchParams]);
+
+	useEffect(() => {
+		if (!breeds) {
+			setIsFetching(true);
+			fetch(`https://api.thecatapi.com/v1/breeds?api_key=${apiKey}`)
+      .then(res => res.json())
+      .then(data => {
+        setBreeds(data);
+				setIsFetching(false);
+      });
+		}
+	}, [])
 
 
-  const onPageLoad = (breed) => {
-      if (breed) {
-          fetch(`https://api.thecatapi.com/v1/images/search?page=${page}&limit=10&breed_id=${breed}`)
-          .then(
-              (response) => {
-                  return response.json()}
-          ).then(
-              
-              (data) => {
-                console.log(data);
-                  setCats(data)
-                  setIsImagesLoaded(true)
-                  setPage(1)
-                  setIsAbleToLoad(true)
-              }
-          )   
-      }
-  }
 
-const onSelectChange = (e) => {
-  
-      if (e.target.value === '' ) {
-          setCats([])
-          setIsAbleToLoad(false)
-          setIsImagesLoaded(false)
-          setCurrentBreed('')
-          return
-      }
 
-      setCurrentBreed(e.target.value)
-      setPage(1)
-      fetch(`https://api.thecatapi.com/v1/images/search?page=${page}&limit=10&breed_id=${e.target.value}`)
-      .then(
-          (response) => {
-              return response.json()}
-      ).then(
-          (data) => {
-              setCats(data)
-              setIsImagesLoaded(true)
-              setIsAbleToLoad(true)
-          }
-      )
-  }
+  const fetchCats = breed => {
+		setIsFetching(true);
+    if (breed) {
+			setIsFetching(true);
+      fetch(`https://api.thecatapi.com/v1/images/search?page=0&limit=${portionSize.toString()}&breed_id=${breed}`)
+        .then(res =>res.json())
+        .then(data => {
+          setCats(data);
+          setIsFetching(false);
+          setPage(page + 1);
+					if (data.length === portionSize) {
+						setIsMoreCats(true)
+					} else {
+						setIsMoreCats(false)
+					};
+        });
+    } else {
+			setIsFetching(false);
+		}
+  };
+
+  const handleSelectChange = e => {
+		if (e.target.value === '') {
+			setSearchParams({})
+		} else {
+			setSearchParams({breed: e.target.value});
+		}
+		setCats(null);
+		setIsMoreCats(false);
+		setCurrentBreed(e.target.value);
+		setPage(0);
+  };
 
   const loadMore = () => {
-      fetch(`https://api.thecatapi.com/v1/images/search?page=${page + 1}&limit=10&breed_id=${currentBreed}`)
-      .then(
-        (response) => {
-            return response.json()}
-        )
-      .then(
-        (data) => {
+		setIsFetchingMore(true);
+    fetch(`https://api.thecatapi.com/v1/images/search?page=${page + 1}&limit=${portionSize.toString()}&breed_id=${currentBreed}`)
+      .then(res => res.json())
+      .then(data => {
+        let newCats = data.reduce((acc, cat) => {
+          if (
+            !cats.find((oldCat) => {
+              return cat.id === oldCat.id;
+            })
+          ) {
+            return (acc = [...acc, cat]);
+          } else return acc;
+        }, []);
 
-            let newCats = data.reduce((acc, cat) => {
-                if (!cats.find(oldCat => { return cat.id === oldCat.id })) {
-                    return acc = [...acc, cat]
-                } else return acc;
-            }, [])
-
-            if(!newCats.length) {
-                setIsAbleToLoad(false)
-            }
-
-            setCats((oldCats) => ([...oldCats, ...newCats]))
+        if (!newCats.length) {
+          setIsMoreCats(false);
         }
-    )
-      setIsImagesLoaded(true)
-      setPage(page + 1)
-  }
 
-  if(!isBreedsReady) {
-      return <div className={s.loading}>Searching cats!</div>
+        setCats((oldCats) => [...oldCats, ...newCats]);
+				setPage(page + 1);
+				setIsFetchingMore(false);
+      }
+			);
+  };
+
+  if (isFetching) {
+    return <Loader height="70vh" />;
   } else {
-      return(
-          <section className={s.searchSection}>
-              <h1 className={s.title}>Search your cat!</h1>
-              <form className={s.breeds}>
-                <select className={s.breedsList} value={currentBreed} onChange={onSelectChange}>
-                  <option value=''>Select Breed</option>
-                  {
-                    breeds.map((item, index) => <option value={item.id} key={index}>{item.name}</option>)
-                  }
-                </select>
-              </form>
-              <CatCards cats={cats}/>
-              {
-                (isImagesLoaded && isAbleToLoad) ?
-                <button className={s.loadMoreVisible} onClick={loadMore}>Load more</button> :
-                <button disabled style={{display: 'none'}} className={s.loadMore}>Load more</button>
-              }
-          </section>
-      )
+    return (
+      <section className={s.catsContainer}>
+        <h1 className={s.title}>Search your cat!</h1>
+        <form className={s.breeds}>
+          <select
+            className={s.breedsList}
+            value={currentBreed}
+            onChange={handleSelectChange}
+          >
+            <option value=''>Select Breed</option>
+            {breeds?.map(item => (
+              <option value={item.id} key={item.id}>
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </form>
+        <CatCards cats={cats} />
+        {
+					isFetchingMore ? <Loader /> : (isMoreCats &&
+						<button className={s.loadMore} onClick={loadMore}>
+							Load more
+						</button>)
+
+				// isMoreCats &&
+        //   <button className={s.loadMore} onClick={loadMore}>
+        //     Load more
+        //   </button>
+        }
+      </section>
+    );
   }
-}
+};
 
 export default Cats;

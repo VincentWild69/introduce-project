@@ -8,7 +8,24 @@
   padding: 30px;
 }
 
+.catItem h2 {
+  text-align: center;
+}
+
 .backBtn {
   color: #be6ac7;
   font-size: 20px;
+}
+
+.catInfo {
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.catInfo p {
+  margin-bottom: 15px;
+}
+
+.catInfo span {
+  font-weight: 500;
 }
