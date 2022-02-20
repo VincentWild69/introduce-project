@@ -21,6 +21,7 @@ import { setError } from "./store/slices/authSlice";
 import ErrorMessageModal from "./components/UI/ErrorMessageModal/ErrorMessageModal";
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Users from "./pages/Users/Users";
+import RequireAuth from './hocs/RequireAuth';
 
 
 function App() {
@@ -57,12 +58,16 @@ function App() {
             <Route path='todos' element={<Todo />} />
             <Route path='cats' element={<Cats />} />
             <Route path='cats/:id' element={<Cat />} />
-            <Route path='quotes' element={<Quotes />} />
+            <Route path='quotes' element={
+              <RequireAuth>
+                <Quotes />
+              </RequireAuth>
+            } />
             <Route path='login' element={<Login />} />
             <Route path='register' element={<Register />} />
             <Route path='users' element={<Users />} />
             <Route path='users/:id' element={<ProfilePage />} />
-            {/* <Route path='adm' element={<AdminTools />} /> */}
+            <Route path='adm' element={<AdminTools />} />
           </Route>
           <Route path='*' element={<NotFoundPgae />} />
         </Routes>

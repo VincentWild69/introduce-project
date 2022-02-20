@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import classNames from 'classnames/bind';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getUsersList, loginThunk } from '../../store/thunks/authThunks';
@@ -23,6 +23,9 @@ const validationSchema = yup.object({
 });
 
 const Login = () => {
+
+  const location = useLocation();
+  const fromPage = location.state?.from?.pathname || '/';
 
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
@@ -51,7 +54,7 @@ const Login = () => {
       if (!truePassword) {
         setpasswordError('Wrong password!')
       } else {
-        dispatch(loginThunk(userExist.id))
+        dispatch(loginThunk(userExist.id));
       }
     }
   };
@@ -60,7 +63,7 @@ const Login = () => {
 
     <>
     {isAuth && (
-      <Navigate to="/" replace={true} />
+      <Navigate to={fromPage} replace={true} />
     )}
 
       <div className={s.loginContainer}>
