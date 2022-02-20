@@ -1,0 +1,27 @@
+.usersListContainer {
+  padding: 20px 20px;
+}
+
+.noUsers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noUsers div {
+  position: absolute;
+  top: 33%;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.userContainer {
+  display: flex;
+  margin: 15px 0;
+}
+
+.userContainer img {
+  height: 100px;
+}
+

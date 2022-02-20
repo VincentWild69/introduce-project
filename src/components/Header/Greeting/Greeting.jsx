@@ -17,9 +17,9 @@ const Greeting = () => {
   return (
     <div className={s.greetingsContainer}>
       
-      {isAuth ?
+      {isAuth && user ?
       <>
-        <div className={s.greetingsHello}>Hello{`, ${user?.name || 'stranger'}`}!</div>
+        <div className={s.greetingsHello}>Hello, <Link to={`${user?.id || '*'}`} className={s.userLink}>{`${user?.name || 'stranger'}`}</Link>!</div>
         <button onClick={logoutUser} className={s.logoutBtn}>logout</button>
       </>
 

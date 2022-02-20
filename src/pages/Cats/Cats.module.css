@@ -10,3 +10,12 @@
   cursor: pointer;
 }
 
+.breedsList {
+  background-color: var(--theme-default-textarea-bg-color);
+  padding: 3px;
+  border: 1px solid #25a704;
+}
+
+.breedsList:focus {
+  outline: none;
+}

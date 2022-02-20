@@ -1,0 +1,25 @@
+.profileContainer {
+  padding: 20px 20px;
+}
+
+.noUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noUser div {
+  position: absolute;
+  top: 33%;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.profileHeader img {
+  height: 175px;
+}
+
+.profileHeader {
+  display: flex;
+}

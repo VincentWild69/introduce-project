@@ -19,6 +19,8 @@ import { useSelector } from 'react-redux';
 import ModalWindow from "./components/UI/ModalWindow/ModalWindow";
 import { setError } from "./store/slices/authSlice";
 import ErrorMessageModal from "./components/UI/ErrorMessageModal/ErrorMessageModal";
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import Users from "./pages/Users/Users";
 
 
 function App() {
@@ -58,7 +60,9 @@ function App() {
             <Route path='quotes' element={<Quotes />} />
             <Route path='login' element={<Login />} />
             <Route path='register' element={<Register />} />
-            <Route path='adm' element={<AdminTools />} />
+            <Route path='users' element={<Users />} />
+            <Route path='users/:id' element={<ProfilePage />} />
+            {/* <Route path='adm' element={<AdminTools />} /> */}
           </Route>
           <Route path='*' element={<NotFoundPgae />} />
         </Routes>

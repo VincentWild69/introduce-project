@@ -11,30 +11,18 @@ const Cats = () => {
 	const [isFetching, setIsFetching] = useState(true);
   const [currentBreed, setCurrentBreed] = useState('');
   const [isMoreCats, setIsMoreCats] = useState(false);
-  const [cats, setCats] = useState([]);
+  const [cats, setCats] = useState(null);
   const [page, setPage] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
 	const [isFetchingMore, setIsFetchingMore] = useState(false);
 
-	const portionSize = 5;
-
-
-	// if (searchParams.has('breed')) {
-	// 	setCurrentBreed(searchParams.get('breed'));
-	// }
-
+	const portionSize = 6;
 
   useEffect(() => {
-
-		let curBreed = '';
-
 		if (searchParams.has('breed')) {
-			curBreed = searchParams.get('breed');
-			setCurrentBreed(curBreed);
+			setCurrentBreed(searchParams.get('breed'));
 		}
-
-    fetchCats(currentBreed);
-		
+    fetchCats(searchParams.get('breed'));
   }, [searchParams]);
 
 	useEffect(() => {
@@ -50,12 +38,9 @@ const Cats = () => {
 	}, [])
 
 
-
-
   const fetchCats = breed => {
 		setIsFetching(true);
     if (breed) {
-			setIsFetching(true);
       fetch(`https://api.thecatapi.com/v1/images/search?page=0&limit=${portionSize.toString()}&breed_id=${breed}`)
         .then(res =>res.json())
         .then(data => {
@@ -91,8 +76,7 @@ const Cats = () => {
       .then(res => res.json())
       .then(data => {
         let newCats = data.reduce((acc, cat) => {
-          if (
-            !cats.find((oldCat) => {
+          if (!cats.find((oldCat) => {
               return cat.id === oldCat.id;
             })
           ) {
@@ -132,17 +116,11 @@ const Cats = () => {
           </select>
         </form>
         <CatCards cats={cats} />
-        {
-					isFetchingMore ? <Loader /> : (isMoreCats &&
-						<button className={s.loadMore} onClick={loadMore}>
-							Load more
-						</button>)
-
-				// isMoreCats &&
-        //   <button className={s.loadMore} onClick={loadMore}>
-        //     Load more
-        //   </button>
-        }
+        {isFetchingMore ? <Loader /> : (isMoreCats &&
+					<button className={s.loadMore} onClick={loadMore}>
+						Load more
+					</button>)
+				}
       </section>
     );
   }

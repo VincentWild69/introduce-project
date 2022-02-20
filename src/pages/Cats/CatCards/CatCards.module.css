@@ -11,11 +11,15 @@
   align-items: center;
   margin: 10px 10px;
   border: 2px solid #47b659;
+  width: 30%;
+  padding: 10px;
+  background-color: var(--theme-default-main-bg-color);
 }
 
 .catImage {
   height: 200px;
-  width: auto;
+  width: 100%;
+  object-fit: contain;
 }
 
 
@@ -23,12 +27,13 @@
   color: var(--theme-default-text-color);
   font-size: 18px;
   margin: 10px 0;
-  transition: 0.3s;
+  transition: 0.1s all;
 }
 
 .cardLink:hover {
-  transform: scale(1.1);
-  transition: 0.3s;
+  transition: 0.1s all;
+  color:#47b659;
+  text-decoration: underline;
 }
 
 .noCats {

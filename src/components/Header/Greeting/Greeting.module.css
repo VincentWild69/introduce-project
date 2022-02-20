@@ -16,6 +16,16 @@
   font-size: 18px;
 }
 
+.userLink {
+  color: var(--theme-default-text-color);
+}
+
+.userLink:hover {
+  color: #2bc73f;
+  text-decoration: underline;
+}
+
+
 .logoutBtn {
   background: transparent;
   padding: 0;

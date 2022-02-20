@@ -34,7 +34,7 @@ const Quotes = () => {
     <div className={s.quotesContainer}>
       <h2>Random quotes for you</h2>
       <div className={s.quotesNav}>
-        <div>
+        {/* <div>
           <p>Change language</p>
           <div className={s.quotesRadios}>
             <label>
@@ -58,7 +58,7 @@ const Quotes = () => {
               <span>Eng</span>
             </label>
           </div>
-        </div>
+        </div> */}
         <div>
           <button className={s.generateBtn} onClick={changeQuote}>
             Genererate quote
