@@ -11,10 +11,24 @@
   align-items: center;
   margin: 10px 10px;
   border: 2px solid #47b659;
-  width: 30%;
   padding: 10px;
   background-color: var(--theme-default-main-bg-color);
+  flex-basis: 30%;
 }
+
+@media screen and (max-width: 720px) {
+  .card {
+    flex-basis: 45%;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .card {
+    flex-basis: 100%;
+  }
+}
+
+
 
 .catImage {
   height: 200px;
