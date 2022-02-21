@@ -46,6 +46,9 @@ export const authSlice = createSlice({
       state.currentUser = null;
       state.isAuth = false;
       localStorage.removeItem('curUser');
+    },
+    removeUserFromList: (state, action) => {
+      state.users = state.users.filter(user => user.id !== action.payload);
     }
 
   }
@@ -53,6 +56,6 @@ export const authSlice = createSlice({
 
 
 
-export const {setUsers, setError, setCustomError, addUser, loadingTrue, loadingFalse, loginUser, logout } = authSlice.actions;
+export const {setUsers, setError, setCustomError, addUser, loadingTrue, loadingFalse, loginUser, logout, removeUserFromList } = authSlice.actions;
 
 export default authSlice.reducer;

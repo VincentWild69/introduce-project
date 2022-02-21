@@ -31,7 +31,7 @@
   background-color: var(--theme-default-textarea-bg-color);
   color: #000;
   max-width: 800px;
-  padding: 50px;
+  padding: 45px;
   font-size: 20px;
   border-radius: 5px;
 }

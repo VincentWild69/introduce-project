@@ -54,7 +54,7 @@ const AdminTools = () => {
     updateUsersBin(users)
   }
 
-  const us = ['0af7bf3d9090', '6e9baf131f83', '809a57c31542', 'a4d431918b95', 'bb08408770e2', 'bceca3556017', 'c422400408fa', '4998bc2936be']
+  const us = ['6e9baf131f83', 'a4d431918b95', 'bb08408770e2', 'c422400408fa', '4998bc2936be']
   let result = [];
 
   const fill = () => {

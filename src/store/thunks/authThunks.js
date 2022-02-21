@@ -1,4 +1,4 @@
-import { addUser, loginUser, setError, setUsers } from "../slices/authSlice"
+import { addUser, loginUser, logout, removeUserFromList, setError, setUsers } from "../slices/authSlice"
 import axios from "axios";
 import { mainBin } from "../../constants";
 import { apiKey } from './../../constants';
@@ -79,4 +79,18 @@ export const loginThunk = (payload) => (dispatch) => {
     } else {dispatch(setError(`Cant login. ${error}`))}
   });
 
+}
+
+export const deleteAccount = (payload) => (dispatch) => {
+  axios
+  .delete(`https://json.extendsclass.com/bin/${payload}`)
+  .then(res => {if (res) {
+      dispatch(logout());
+      dispatch(removeUserFromList(payload));
+  }})
+  .catch( error => {
+    if (error.response) {
+      dispatch(setError(`Cant delete user. Error ${error.response.status}: ${error.response.data.message}`));
+    } else {dispatch(setError(`Cant delete user. ${error}`))}
+  });
 }
