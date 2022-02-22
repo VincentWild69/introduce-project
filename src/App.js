@@ -54,20 +54,20 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path='/contacts' element={<Contacts />} />
-            <Route path='/todos' element={<Todo />} />
-            <Route path='/cats' element={<Cats />} />
-            <Route path='/cats/:id' element={<Cat />} />
-            <Route path='/quotes' element={
+            <Route path='contacts' element={<Contacts />} />
+            <Route path='todos' element={<Todo />} />
+            <Route path='cats' element={<Cats />} />
+            <Route path='cats/:id' element={<Cat />} />
+            <Route path='quotes' element={
               <RequireAuth>
                 <Quotes />
               </RequireAuth>
             } />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/users/' element={<Users />} />
-            <Route path='/users/:id' element={<ProfilePage />} />
-            <Route path='/users/:id/edit' element={<EditProfile />} />
+            <Route path='login' element={<Login />} />
+            <Route path='register' element={<Register />} />
+            <Route path='users' element={<Users />} />
+            <Route path='users/:id' element={<ProfilePage />} />
+            <Route path='users/:id/edit' element={<EditProfile />} />
           </Route>
           <Route path='*' element={<NotFoundPgae />} />
         </Routes>

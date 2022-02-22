@@ -13,7 +13,14 @@ const Aside = ({isMenuActive}) => {
 
   const {t} = useTranslation();
 
-  const items = [{value: `${t('menu.home')}`, href: '/', icon: 'home'}, {value: `${t('menu.contacts')}`, href: '/contacts', icon: 'contacts'}, {value: `${t('menu.todos')}`, href: '/todos', icon: 'todos'}, {value: `${t('menu.cats')}`, href: '/cats', icon: 'cats'}, {value: `${t('menu.quotes')}`, href: '/quotes', icon: 'quotes'}, {value: `${t('menu.users')}`, href: '/users', icon: 'users'}];
+  const items = [
+    {value: `${t('menu.home')}`, href: '/', icon: 'home'}, 
+    {value: `${t('menu.contacts')}`, href: '/contacts', icon: 'contacts'}, 
+    {value: `${t('menu.todos')}`, href: '/todos', icon: 'todos'}, 
+    {value: `${t('menu.cats')}`, href: '/cats', icon: 'cats'}, 
+    {value: `${t('menu.quotes')}`, href: '/quotes', icon: 'quotes'}, 
+    {value: `${t('menu.users')}`, href: '/users', icon: 'users'}
+  ];
 
   return (
     <aside onClick={e => e.stopPropagation()} className={cx('aside', {active: isMenuActive})} >

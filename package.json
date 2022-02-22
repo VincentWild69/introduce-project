@@ -1,7 +1,6 @@
 {
   "name": "introduce-project",
   "version": "0.1.0",
-  "homepage": "https://vincentwild69.github.io/introduce-project",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
