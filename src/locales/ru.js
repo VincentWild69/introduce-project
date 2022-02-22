@@ -1,4 +1,5 @@
-{
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   "common": {
     "my-fullname": "Алексей Кузнецов",
     "page-not-exist": "Страницы не существует"

@@ -15,6 +15,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter basename='/introduce-project/'>
+      {/* <BrowserRouter> */}
         <ThemeProvider>
           <Suspense fallback={<MainLoader />}>
             <App />

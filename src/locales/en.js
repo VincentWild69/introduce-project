@@ -1,4 +1,5 @@
-{
+/* eslint-disable import/no-anonymous-default-export */
+export default {
   "common": {
     "my-fullname": "Alexey Kuznietsov",
     "page-not-exist": "Page does not exist "
@@ -53,4 +54,4 @@
   "big-texts": {
     "about-me": "Hello! My name is Alexey, I live in a small town in Ukraine. Due to the lack of job offers in my city, I want to study the profession of a web developer in order to be able to work remotely. I have always been fascinated by the \"magic\" of talking with a machine, when you can learn languages that allow you to do some cool things using a computer and a well-written program. Now I am at the beginning of the road, but I hope to become a professional in web development in the near future, I am ready to put a lot of effort into this."
   }
-}
+};
