@@ -1,10 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import s from './ProfilePage.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/Loader/MainLoader/Loader';
-import rezAvatar from '../../assets/img/rezAvatar.png';
+import rezAvatar from '../../assets/img/rezAvatar.jpg';
 import ModalWindow from '../../components/UI/ModalWindow/ModalWindow';
 import { deleteAccount, getUsersList, updateUsersBin } from '../../store/thunks/authThunks';
 
@@ -61,19 +61,31 @@ const ProfilePage = () => {
   return (
       <div className={s.profileContainer}>
         <div className={s.profileHeader}>
-          <img src={profile?.userAvatar || rezAvatar} alt='userPhoto' />
+          <img src={profile?.avatar || rezAvatar} alt='userPhoto' />
           <div className={s.profileInfo}>
-            <div>{profile.name}</div>
+            <div><span>Name:</span> {profile.name}</div>
+            <div><span>Status:</span> {profile?.status || 'not defined'}</div>
+            <div><span>City:</span> {profile?.city || 'not defined'}</div>
           </div>
         </div>
         <div>
-          {editMode && <button 
-          onClick={() => {
-              dispatch(getUsersList());
-              setModal(true);
-            }
-          } 
-          className={s.deleteBtn}>Delete account</button>}
+          {editMode && <div>
+            <button
+              onClick={() => {
+                  dispatch(getUsersList());
+                  setModal(true);
+                }
+              }
+              className={s.deleteBtn}>
+              Delete account
+            </button>
+            <Link to={`edit`}>
+              <button
+                className={s.editBtn}>
+                Edit account
+              </button>
+            </Link>
+          </div>}
         </div>
 
 

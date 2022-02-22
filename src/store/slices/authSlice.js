@@ -10,7 +10,8 @@ const initialState = {
     message: null,
     status: null
   },
-  isLoading: false
+  isLoading: false,
+  alert: null
 }
 
 
@@ -31,6 +32,9 @@ export const authSlice = createSlice({
     setError: (state, action) => {
       state.error.message = action.payload
     },
+    setAlert: (state, action) => {
+      state.alert = action.payload
+    },
     setCustomError: (state, action) => {
       state.error[action.payload.name] = action.payload.error
     },
@@ -49,6 +53,15 @@ export const authSlice = createSlice({
     },
     removeUserFromList: (state, action) => {
       state.users = state.users.filter(user => user.id !== action.payload);
+    },
+    updUserStore: (state, action) => {
+      state.currentUser = Object.assign(state.currentUser, action.payload.payload);
+      const {name = state.currentUser.name, email = state.currentUser.email, password, avatar = state.currentUser.avatar || ''} = action.payload.payload;
+      state.users.forEach(user => {
+        if (user.id === action.payload.id) {
+          user = Object.assign(user, {name, email, password, avatar}); 
+        }
+      })
     }
 
   }
@@ -56,6 +69,6 @@ export const authSlice = createSlice({
 
 
 
-export const {setUsers, setError, setCustomError, addUser, loadingTrue, loadingFalse, loginUser, logout, removeUserFromList } = authSlice.actions;
+export const {setUsers, setError, setAlert, setCustomError, addUser, loadingTrue, loadingFalse, loginUser, logout, removeUserFromList, updUserStore} = authSlice.actions;
 
 export default authSlice.reducer;

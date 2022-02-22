@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsersList } from '../../store/thunks/authThunks';
 import Loader from './../../components/Loader/MainLoader/Loader';
-import rezAvatar from '../../assets/img/rezAvatar.png';
+import rezAvatar from '../../assets/img/rezAvatar.jpg';
 import { Link } from 'react-router-dom';
 
 
@@ -28,7 +28,7 @@ const Users = () => {
       {users.map(user => {
         return (
           <div key={user.id} className={s.userContainer}>
-            <Link to={`${user.id}`}><img src={user?.userAvatar || rezAvatar} alt='userPhoto' /></Link>
+            <Link to={`${user.id}`}><img src={user?.avatar || rezAvatar} alt='userPhoto' /></Link>
             <div className={s.userInfo}>
               {user.name}
             </div>
@@ -37,8 +37,6 @@ const Users = () => {
       })}
     </div>
   );
-
-
 
 }
 

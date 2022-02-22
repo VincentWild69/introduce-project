@@ -23,7 +23,33 @@
 
 .profileHeader {
   display: flex;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
+
+.profileInfo {
+  margin-left: 20px;
+}
+
+.profileInfo div {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.profileInfo div span {
+  font-weight: 500;
+}
+
+
+
+
+.editBtn {
+  padding: 5px;
+  border: 1px solid #000;
+  background-color: #6ff5ab;
+  color: #000;
+}
+
 
 .deleteBtn {
   padding: 5px;
@@ -31,6 +57,7 @@
   background-color: #f56f6f;
   color: #000;
   font-weight: 400;
+  margin-right: 20px;
 }
 
 .warningText {

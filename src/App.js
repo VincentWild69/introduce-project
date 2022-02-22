@@ -22,6 +22,7 @@ import ErrorMessageModal from "./components/UI/ErrorMessageModal/ErrorMessageMod
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Users from "./pages/Users/Users";
 import RequireAuth from './hocs/RequireAuth';
+import EditProfile from "./components/EditProfile/EditProfile";
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
             <Route path='register' element={<Register />} />
             <Route path='users' element={<Users />} />
             <Route path='users/:id' element={<ProfilePage />} />
+            <Route path='users/:id/edit' element={<EditProfile />} />
             <Route path='adm' element={<AdminTools />} />
           </Route>
           <Route path='*' element={<NotFoundPgae />} />

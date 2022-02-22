@@ -43,6 +43,9 @@ const AdminTools = () => {
     axios
       .get(`https://json.extendsclass.com/bin/${mainBin}`)
       .then((res) => console.log(res.data));
+    axios
+    .get(`https://json.extendsclass.com/bin/6e9baf131f83`)
+    .then((res) => console.log(res.data));
   };
 
 
@@ -69,18 +72,8 @@ const AdminTools = () => {
 
   const patchBin = () => {
     axios
-      .patch(`https://json.extendsclass.com/bin/2df`, {
-          "users": [{
-            id: 'dsfdsf4565',
-            name: "Ivan",
-            email: "vincentwild69@gmail.com",
-            password: "123456"
-          }, {
-            id: 'dsfssdsf4565',
-            name: "Pavlo",
-            email: "vincentwild77@gmail.com",
-            password: "123456"
-          }],
+      .patch(`https://json.extendsclass.com/bin/6e9baf1`, {
+        'payload': null
       })
       .then((res) => {console.log(res.data); return res.data.data})
       .catch( error => {
@@ -88,7 +81,7 @@ const AdminTools = () => {
           console.log(`Error ${error.response.status}: ${error.response.data.message}`);
         } else {console.log(error.message)}
       })
-      .then( res => {console.log(JSON.parse(res));
+      .then( res => {console.log(res);
       });
   };
 

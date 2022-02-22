@@ -14,7 +14,7 @@ const cx = classNames.bind(s);
 const validationSchema = yup.object({
   name: yup.string()
   .trim()
-  .max(20, 'Too Long!')
+  .max(30, 'Too Long!')
   .required('Enter your name!'),
   
   email: yup.string()
@@ -46,7 +46,7 @@ const Register = () => {
   }, [])
 
   useEffect(() => {
-    dispatch(updateUsersBin(users));
+    users && dispatch(updateUsersBin(users));
   }, [users])
 
 
@@ -60,7 +60,7 @@ const Register = () => {
     let oldUser = users.find(user => user.email === data.email);
 
     if (oldUser) {
-      setUserError('User this this email already exist!')
+      setUserError('User with this email already exist!')
     } else {
       const userInfo = {...data};
       delete userInfo.confirmPassword

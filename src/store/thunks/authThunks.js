@@ -1,4 +1,4 @@
-import { addUser, loginUser, logout, removeUserFromList, setError, setUsers } from "../slices/authSlice"
+import { addUser, loginUser, logout, removeUserFromList, setAlert, setError, setUsers, updUserStore } from "../slices/authSlice"
 import axios from "axios";
 import { mainBin } from "../../constants";
 import { apiKey } from './../../constants';
@@ -58,8 +58,8 @@ export const updateUsersBin = (updUsers) => (dispatch) => {
       })
       .catch( error => {
         if (error.response) {
-          dispatch(setError(`Cant update user. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {dispatch(setError(`Cant update user. ${error}`))}
+          dispatch(setError(`Cant update users bin. Error ${error.response.status}: ${error.response.data.message}`));
+        } else {dispatch(setError(`Cant update users bin. ${error}`))}
       });
 }
 
@@ -67,8 +67,9 @@ export const loginThunk = (payload) => (dispatch) => {
   axios
   .get(`https://json.extendsclass.com/bin/${payload}`)
   .then(res => {if (res) {
-      const {id, name, email} = res.data;
-      dispatch(loginUser({id, name, email}))
+      const userInfo = {...res.data};
+      delete userInfo.password;
+      dispatch(loginUser(userInfo))
   }})
   .catch( error => {
     if (error.response) {
@@ -92,5 +93,21 @@ export const deleteAccount = (payload) => (dispatch) => {
     if (error.response) {
       dispatch(setError(`Cant delete user. Error ${error.response.status}: ${error.response.data.message}`));
     } else {dispatch(setError(`Cant delete user. ${error}`))}
+  });
+}
+
+export const updateUser = (id, payload) => (dispatch) => {
+  axios
+  .patch(`https://json.extendsclass.com/bin/${id}`, {...payload})
+  .then( res => {
+    if (res) {
+      dispatch(updUserStore({id, payload}));
+      dispatch(setAlert('Successfully modified!'));
+    }
+  })
+  .catch( error => {
+    if (error.response) {
+      dispatch(setError(`Cant update user. Error ${error.response.status}: ${error.response.data.message}`));
+    } else {dispatch(setError(`Cant update user. ${error}`))}
   });
 }

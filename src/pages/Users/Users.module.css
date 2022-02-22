@@ -1,5 +1,6 @@
 .usersListContainer {
   padding: 20px 20px;
+
 }
 
 .noUsers {
@@ -19,10 +20,16 @@
 
 .userContainer {
   display: flex;
-  margin: 15px 0;
+  align-items: center;
+  margin: 20px 0;
 }
 
 .userContainer img {
-  height: 100px;
+  height: 80px;
+}
+
+.userInfo {
+  margin-left: 20px;
+  font-size: 18px;
 }
 
