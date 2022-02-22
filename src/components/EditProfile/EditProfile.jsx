@@ -8,8 +8,9 @@ import * as yup from 'yup';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { getUsersList, updateUser, updateUsersBin } from '../../store/thunks/authThunks';
-import { setAlert, updUserStore } from '../../store/slices/authSlice';
+import { setAlert } from '../../store/slices/authSlice';
 import ModalWindow from '../UI/ModalWindow/ModalWindow';
+import Loader from './../Loader/MainLoader/Loader';
 
 
 const cx = classNames.bind(s);
@@ -44,32 +45,21 @@ const EditProfile = () => {
 
   const params = useParams();
   const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
   const alert = useSelector(state => state.auth.alert);
-
+  const serverLoading = useSelector(state => state.auth.isLoading);
   const currentUser = useSelector(state => state.auth?.currentUser);
-  const editMode = currentUser?.id === params.id;
   const usersList = useSelector(state => state.auth.users);
 
-  const [userName, setUserName] = useState(currentUser?.name || '');
-  const [userEmail, setUserEmail] = useState(currentUser?.email || '');
-  const [userAvatar, setUserAvatar] = useState(currentUser?.avatar || '');
+  const editMode = currentUser?.id === params.id;
+
+  const [modal, setModal] = useState(false);
   const [userStatus, setUserStatus] = useState(currentUser?.status || '');
-  const [userCity, setUserCity] = useState(currentUser?.city || '');
-
-  const [userPassword, setUserPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const serverLoading = useSelector(state => state.auth.isLoading);
   const [emailError, setEmailError] = useState(null);
+  
+
 
   useEffect(() => {
     !usersList && dispatch(getUsersList());
-    const thisUser = usersList && usersList.find(user => user.id === currentUser.id);
-    setUserPassword(thisUser?.password || '');
-  }, [usersList])
-
-  useEffect(() => {
     usersList && dispatch(updateUsersBin(usersList));
   }, [usersList])
 
@@ -77,10 +67,12 @@ const EditProfile = () => {
     alert ? setModal(true) : setModal(false)
   }, [alert])
 
+
   const clearAndCloseAlert = () => {
     setModal(false);
     setTimeout(() => {dispatch(setAlert(null))}, 100);
   }
+
 
   const { register, handleSubmit, formState:{ errors } } = useForm({
     defaultValues: {
@@ -88,15 +80,15 @@ const EditProfile = () => {
       email: currentUser?.email || '',
       avatar: currentUser?.avatar || '',
       city: currentUser?.city || '',
-      password: userPassword,
+      password: currentUser?.password || '',
       confirmPassword: ''
     },
     resolver: yupResolver(validationSchema),
     mode: 'onBlur'
   });
 
-  const onSubmit = data => {
 
+  const onSubmit = data => {
     let oldUser = usersList.find(user => user.email === data.email && user.id !== currentUser.id);
 
     if (oldUser) {
@@ -113,10 +105,14 @@ const EditProfile = () => {
   }
 
 
+  if (serverLoading) return <Loader height='60vh' />
+
   return (
     <RequireAuth>
-      {!editMode ? 
+      {!editMode ?
+
       <Navigate to='/' replace={true}/> :
+
       <div className={s.editProfileContainer}>
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
           <div>
@@ -127,8 +123,6 @@ const EditProfile = () => {
               className={cx('editInput', {wrongValue: errors.name})}
               type={`text`} 
               placeholder={`enter your name...`}
-              // value={userName}
-              // onChange={(e) => setUserName(e.target.value)}
               />
               <div className={s.error}>
                 {errors.name?.message}
@@ -141,10 +135,8 @@ const EditProfile = () => {
               {...register("email")}
               className={cx('editInput', {wrongValue: errors.email})}
               placeholder={`enter your email...`}
-              // value={userEmail}
               onChange={(e) => {
                 if (emailError) setEmailError(null);
-                // setUserEmail(e.target.value);
               }}
               />
               <div className={s.error}>
@@ -161,10 +153,6 @@ const EditProfile = () => {
               {...register("avatar")}
               className={cx('editInput', {wrongValue: errors.avatar})}
               placeholder={`enter link to avatar image`}
-              // value={userAvatar}
-              // onChange={(e) => {
-              //   setUserAvatar(e.target.value);
-              // }}
               />
               <div className={s.error}>
                 {errors.avatar?.message}
@@ -194,10 +182,6 @@ const EditProfile = () => {
               {...register("city")}
               className={cx('editInput', {wrongValue: errors.city})}
               placeholder={`enter your city`}
-              // value={userCity}
-              // onChange={(e) => {
-              //   setUserCity(e.target.value);
-              // }}
               />
               <div className={s.error}>
                 {errors.city?.message}
@@ -210,10 +194,6 @@ const EditProfile = () => {
               {...register("password")}
               className={cx('editInput', {wrongValue: errors.password})}
               placeholder={`enter password`}
-              // value={userPassword}
-              // onChange={(e) => {
-              //   setUserPassword(e.target.value);
-              // }}
               />
               <div className={s.error}>
                 {errors.password?.message}
@@ -226,10 +206,6 @@ const EditProfile = () => {
               {...register("confirmPassword")}
               className={cx('editInput', {wrongValue: errors.confirmPassword})}
               placeholder={`confirm password`}
-              // value={confirmPassword}
-              // onChange={(e) => {
-              //   setConfirmPassword(e.target.value);
-              // }}
               />
               <div className={s.error}>
                 {errors.confirmPassword?.message}

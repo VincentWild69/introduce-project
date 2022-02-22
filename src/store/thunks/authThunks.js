@@ -1,23 +1,29 @@
-import { addUser, loginUser, logout, removeUserFromList, setAlert, setError, setUsers, updUserStore } from "../slices/authSlice"
+import { addUser, loadingFalse, loadingTrue, loginUser, logout, removeUserFromList, setAlert, setError, setUsers, updUserStore } from "../slices/authSlice"
 import axios from "axios";
 import { mainBin } from "../../constants";
 import { apiKey } from './../../constants';
 
 
 export const getUsersList = () => (dispatch) => {
+    dispatch(loadingTrue());
     axios
       .get(`https://json.extendsclass.com/bin/${mainBin}`)
       .then(res => {if (res) {
-          dispatch(setUsers(res.data.users))
+          dispatch(setUsers(res.data.users));
+          dispatch(loadingFalse());
       }})
       .catch( error => {
         if (error.response) {
           dispatch(setError(`Cant fetch users. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {dispatch(setError(`Cant fetch users. ${error}`))}
+        } else {
+          dispatch(setError(`Cant fetch users. ${error}`));
+        }
+        dispatch(loadingFalse());
       });
 }
 
 export const createUser = (payload) => (dispatch) => {
+  dispatch(loadingTrue());
   axios
     .post(`https://json.extendsclass.com/bin`, payload, {headers: {"Api-key": apiKey}})
       .then((res) => {
@@ -40,14 +46,18 @@ export const createUser = (payload) => (dispatch) => {
           .then(res => {
             if (res) {
               const {id, name, email} = JSON.parse(res.data.data);
-              dispatch(loginUser({id, name, email}))
+              dispatch(loginUser({id, name, email}));
+              dispatch(loadingFalse());
             }
           })
       })
       .catch( error => {
         if (error.response) {
           dispatch(setError(`Cant create user. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {dispatch(setError(`Cant create user. ${error}`))}
+        } else {
+          dispatch(setError(`Cant create user. ${error}`));
+        }
+        dispatch(loadingFalse());
       });
 }
 
@@ -64,12 +74,13 @@ export const updateUsersBin = (updUsers) => (dispatch) => {
 }
 
 export const loginThunk = (payload) => (dispatch) => {
+  dispatch(loadingTrue());
   axios
   .get(`https://json.extendsclass.com/bin/${payload}`)
   .then(res => {if (res) {
       const userInfo = {...res.data};
-      delete userInfo.password;
-      dispatch(loginUser(userInfo))
+      dispatch(loginUser(userInfo));
+      dispatch(loadingFalse());
   }})
   .catch( error => {
     if (error.response) {
@@ -77,37 +88,48 @@ export const loginThunk = (payload) => (dispatch) => {
       if (error.response.status.toString() === '404') {
         localStorage.removeItem('curUser')
       }
-    } else {dispatch(setError(`Cant login. ${error}`))}
+    } else {
+      dispatch(setError(`Cant login. ${error}`));
+    }
+    dispatch(loadingFalse());
   });
 
 }
 
 export const deleteAccount = (payload) => (dispatch) => {
+  dispatch(loadingTrue());
   axios
   .delete(`https://json.extendsclass.com/bin/${payload}`)
   .then(res => {if (res) {
       dispatch(logout());
       dispatch(removeUserFromList(payload));
+      dispatch(loadingFalse());
   }})
   .catch( error => {
     if (error.response) {
       dispatch(setError(`Cant delete user. Error ${error.response.status}: ${error.response.data.message}`));
     } else {dispatch(setError(`Cant delete user. ${error}`))}
+    dispatch(loadingFalse());
   });
 }
 
 export const updateUser = (id, payload) => (dispatch) => {
+  dispatch(loadingTrue());
   axios
   .patch(`https://json.extendsclass.com/bin/${id}`, {...payload})
   .then( res => {
     if (res) {
       dispatch(updUserStore({id, payload}));
       dispatch(setAlert('Successfully modified!'));
+      dispatch(loadingFalse());
     }
   })
   .catch( error => {
     if (error.response) {
       dispatch(setError(`Cant update user. Error ${error.response.status}: ${error.response.data.message}`));
-    } else {dispatch(setError(`Cant update user. ${error}`))}
+    } else {
+        dispatch(setError(`Cant update user. ${error}`));
+      }
+    dispatch(loadingFalse());
   });
 }

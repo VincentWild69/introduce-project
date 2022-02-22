@@ -11,7 +11,7 @@ const Users = () => {
 
   const dispatch = useDispatch();
   const users = useSelector(state => state.auth.users);
-  const isFetching = useSelector(state => state.auth.isFetching)
+  const isFetching = useSelector(state => state.auth.isLoading);
 
   useEffect(() => {
     dispatch(getUsersList());

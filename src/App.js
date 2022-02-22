@@ -9,7 +9,6 @@ import Quotes from './pages/Quotes/Quotes';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import NotFoundPgae from './components/NotFoundPage/NotFoundPage';
-import AdminTools from './components/AdminTools/AdminTools';
 import React from 'react';
 import { loginThunk } from './store/thunks/authThunks';
 import { useDispatch } from 'react-redux';
@@ -69,7 +68,6 @@ function App() {
             <Route path='users' element={<Users />} />
             <Route path='users/:id' element={<ProfilePage />} />
             <Route path='users/:id/edit' element={<EditProfile />} />
-            <Route path='adm' element={<AdminTools />} />
           </Route>
           <Route path='*' element={<NotFoundPgae />} />
         </Routes>

@@ -75,7 +75,14 @@ const Register = () => {
         <Navigate to="/" replace={true} />
       )}
 
+        <div style={{margin: '50px'}}>
+        Please note that I do not use email in any way, it is just your unique login, any email-like object like somebody@somemail.com is accepted in the email field. After registration, the account can be edited or deleted.
+        </div>
+
       <div className={s.registerContainer}>
+
+
+
         <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
           <div>
 

@@ -56,7 +56,7 @@ export const authSlice = createSlice({
     },
     updUserStore: (state, action) => {
       state.currentUser = Object.assign(state.currentUser, action.payload.payload);
-      const {name = state.currentUser.name, email = state.currentUser.email, password, avatar = state.currentUser.avatar || ''} = action.payload.payload;
+      const {name = state.currentUser.name, email = state.currentUser.email, password = state.currentUser.password, avatar = state.currentUser.avatar || ''} = action.payload.payload;
       state.users.forEach(user => {
         if (user.id === action.payload.id) {
           user = Object.assign(user, {name, email, password, avatar}); 
