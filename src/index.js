@@ -14,7 +14,7 @@ import MainLoader from './components/MainLoader/MainLoader';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename='/introduce-project/'>
+      <BrowserRouter basename='/introduce-project'>
       {/* <BrowserRouter> */}
         <ThemeProvider>
           <Suspense fallback={<MainLoader />}>
