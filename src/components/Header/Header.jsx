@@ -12,7 +12,7 @@ const Header = ({ isMenuActive, changeMenuStatus }) => {
   return (
     <div className={s.header}>
       <div
-        onClick={() => changeMenuStatus()}
+        onClick={changeMenuStatus}
         className={cx("burger", { active: isMenuActive })}
       >
         <span className={s.burgerSpan}></span>

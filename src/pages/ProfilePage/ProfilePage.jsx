@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import s from './ProfilePage.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import { deleteAccount, getUsersList, updateUsersBin } from '../../store/thunks/
 
 const ProfilePage = () => {
 
+  const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -69,7 +70,7 @@ const ProfilePage = () => {
           </div>
         </div>
         <div>
-          {editMode && <div>
+          {editMode && <div className={s.editBtns}>
             <button
               onClick={() => {
                   dispatch(getUsersList());

@@ -24,11 +24,23 @@
 .profileHeader {
   display: flex;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 
 .profileInfo {
   margin-left: 20px;
+}
+
+@media screen and (max-width: 520px) {
+
+  .profileHeader {
+    flex-direction: column;
+  }
+  .profileInfo {
+    margin: 20px 0 0 0;
+  }
+  .profileHeader img {
+    align-self: center;
+  }
 }
 
 .profileInfo div {
@@ -41,10 +53,18 @@
 }
 
 
+.editBtns {
+  margin: 0 0 15px 0;
+}
 
+.editBtns button {
+  margin: 5px 10px 5px 0;
+  padding: 5px;
+  max-width: 120px;
+  width: 100%;
+}
 
 .editBtn {
-  padding: 5px;
   border: 1px solid #000;
   background-color: #6ff5ab;
   color: #000;
@@ -52,12 +72,10 @@
 
 
 .deleteBtn {
-  padding: 5px;
   border: 1px solid #000;
   background-color: #f56f6f;
   color: #000;
-  font-weight: 400;
-  margin-right: 20px;
+
 }
 
 .warningText {
