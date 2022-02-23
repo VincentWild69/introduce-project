@@ -19,6 +19,8 @@
 
 .profileHeader img {
   height: 175px;
+  max-width: 200px;
+  object-fit: cover;
 }
 
 .profileHeader {
