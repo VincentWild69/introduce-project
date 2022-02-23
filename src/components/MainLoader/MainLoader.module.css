@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.loaderBody {
+  text-align: center;
+}
+
 .loaderSvg {
   height: 140px;
   width: 140px;

@@ -54,7 +54,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path='contacts' element={<Contacts />} />
+            <Route path='/contacts' element={<Contacts />} />
             <Route path='todos' element={<Todo />} />
             <Route path='cats' element={<Cats />} />
             <Route path='cats/:id' element={<Cat />} />

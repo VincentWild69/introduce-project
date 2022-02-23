@@ -14,7 +14,7 @@ const Users = () => {
   const isFetching = useSelector(state => state.auth.isLoading);
 
   useEffect(() => {
-    dispatch(getUsersList());
+    !users && dispatch(getUsersList());
   }, [])
 
 

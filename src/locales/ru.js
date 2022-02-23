@@ -1,5 +1,5 @@
-/* eslint-disable import/no-anonymous-default-export */
-export default {
+
+export const ru = {
   "common": {
     "my-fullname": "Алексей Кузнецов",
     "page-not-exist": "Страницы не существует"

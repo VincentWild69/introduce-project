@@ -5,7 +5,7 @@
 
 .main {
   padding: 10px;
-  min-height: 83.8vh;
+  min-height: 85vh;
   background-color: var(--theme-default-main-bg-color);
   width: 100%;
 }
