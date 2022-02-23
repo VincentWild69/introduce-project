@@ -45,8 +45,8 @@ export const createUser = (payload) => (dispatch) => {
             })
           .then(res => {
             if (res) {
-              const {id, name, email} = JSON.parse(res.data.data);
-              dispatch(loginUser({id, name, email}));
+              const {id, name, email, password} = JSON.parse(res.data.data);
+              dispatch(loginUser({id, name, email, password}));
               dispatch(loadingFalse());
             }
           })
