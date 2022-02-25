@@ -14,7 +14,7 @@ const Todo = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const [offlineMode, setOfflineMode] = useState(true)
+  const [offlineMode, setOfflineMode] = useState(true);
   const todoList = useSelector((state) => state.todos.todosItems);
 
   const sortConfig = {
@@ -24,7 +24,7 @@ const Todo = () => {
   };
 
   useEffect(() => {
-    if (offlineMode) {
+    if (offlineMode && !todoList) {
       dispatch(fillTodoList(storage.getItem('todos')))
     }
 
