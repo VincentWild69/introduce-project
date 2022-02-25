@@ -2,24 +2,36 @@ import s from './Cat.module.css';
 import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import Loader from './../../../components/Loader/Loader';
+import axios from "axios";
+import { createAxiosError } from './../../../util/createAxiosError';
 
 
 
 const Cat = () => {
 
-  const [cat, setCat] = useState(null)
+  const [cat, setCat] = useState(null);
+  const [catLoading, setCatLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   let params = useParams();
   
-  
   useEffect(() => {
-    fetch(`https://api.thecatapi.com/v1/images/${params.id}`)
-      .then(res => res.json())
-      .then(data => setCat(data))
+    setCatLoading(true);
+    axios.get(`https://api.thecatapi.com/v1/images/${params.id}`)
+      .then(res => {
+        setCat(res.data);
+        setCatLoading(false);
+      })
+      .catch( error => {
+        createAxiosError(error, 'Cant fetch cat', setError);
+        setCatLoading(false);
+      });
   },[])
 
-  if(!cat) {
-      return <Loader boxHeight='400px' />
+  if (catLoading) {
+    return <Loader boxHeight='400px' />
+  } else if (error) {
+    return <div style={{marginTop: '20vh', textAlign: 'center'}}>{error}</div>
   } else {
       return (
         <div className={s.catItem}>

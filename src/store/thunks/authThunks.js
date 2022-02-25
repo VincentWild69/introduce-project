@@ -2,22 +2,19 @@ import { addUser, loadingFalse, loadingTrue, loginUser, logout, removeUserFromLi
 import axios from "axios";
 import { mainBin } from "../../constants";
 import { apiKey } from './../../constants';
+import { createAxiosError } from './../../util/createAxiosError';
 
 
 export const getUsersList = () => (dispatch) => {
     dispatch(loadingTrue());
     axios
-      .get(`https://json.extendsclass.com/bin/${mainBin}`)
+      .get(`https://json.extendsclass.com/bin/d${mainBin}`)
       .then(res => {if (res) {
           dispatch(setUsers(res.data.users));
           dispatch(loadingFalse());
       }})
       .catch( error => {
-        if (error.response) {
-          dispatch(setError(`Cant fetch users. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {
-          dispatch(setError(`Cant fetch users. ${error}`));
-        }
+        createAxiosError(error, 'Cant fetch users', setError, dispatch);
         dispatch(loadingFalse());
       });
 }
@@ -52,11 +49,7 @@ export const createUser = (payload) => (dispatch) => {
           })
       })
       .catch( error => {
-        if (error.response) {
-          dispatch(setError(`Cant create user. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {
-          dispatch(setError(`Cant create user. ${error}`));
-        }
+        createAxiosError(error, 'Cant create user', setError, dispatch);
         dispatch(loadingFalse());
       });
 }
@@ -67,9 +60,7 @@ export const updateUsersBin = (updUsers) => (dispatch) => {
         "users": updUsers
       })
       .catch( error => {
-        if (error.response) {
-          dispatch(setError(`Cant update users bin. Error ${error.response.status}: ${error.response.data.message}`));
-        } else {dispatch(setError(`Cant update users bin. ${error}`))}
+        createAxiosError(error, 'Cant update users bin', setError, dispatch);
       });
 }
 
@@ -106,9 +97,7 @@ export const deleteAccount = (payload) => (dispatch) => {
       dispatch(loadingFalse());
   }})
   .catch( error => {
-    if (error.response) {
-      dispatch(setError(`Cant delete user. Error ${error.response.status}: ${error.response.data.message}`));
-    } else {dispatch(setError(`Cant delete user. ${error}`))}
+    createAxiosError(error, 'Cant delete user', setError, dispatch);
     dispatch(loadingFalse());
   });
 }
@@ -125,11 +114,7 @@ export const updateUser = (id, payload) => (dispatch) => {
     }
   })
   .catch( error => {
-    if (error.response) {
-      dispatch(setError(`Cant update user. Error ${error.response.status}: ${error.response.data.message}`));
-    } else {
-        dispatch(setError(`Cant update user. ${error}`));
-      }
+    createAxiosError(error, 'Cant update user', setError, dispatch);
     dispatch(loadingFalse());
   });
 }

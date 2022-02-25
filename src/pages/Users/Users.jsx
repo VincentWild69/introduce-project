@@ -21,7 +21,7 @@ const Users = () => {
   if (isFetching) return <Loader boxHeight='60vh' />
   if (!users) return (
     <div className={s.noUsers}>
-      <div>Cant loading users...</div>
+      <div>Cant load users</div>
     </div>)
   return (
     <div className={s.usersListContainer}>
