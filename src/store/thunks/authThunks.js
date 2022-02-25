@@ -8,7 +8,7 @@ import { createAxiosError } from './../../util/createAxiosError';
 export const getUsersList = () => (dispatch) => {
     dispatch(loadingTrue());
     axios
-      .get(`https://json.extendsclass.com/bin/d${mainBin}`)
+      .get(`https://json.extendsclass.com/bin/${mainBin}`)
       .then(res => {if (res) {
           dispatch(setUsers(res.data.users));
           dispatch(loadingFalse());

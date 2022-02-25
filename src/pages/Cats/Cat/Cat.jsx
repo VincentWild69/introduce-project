@@ -23,6 +23,7 @@ const Cat = () => {
         setCatLoading(false);
       })
       .catch( error => {
+        console.log(error.response)
         createAxiosError(error, 'Cant fetch cat', setError);
         setCatLoading(false);
       });
