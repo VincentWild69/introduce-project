@@ -1,7 +1,7 @@
 import s from './Cat.module.css';
 import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import Loader from './../../../components/Loader/MainLoader/Loader';
+import Loader from './../../../components/Loader/Loader';
 
 
 
@@ -19,7 +19,7 @@ const Cat = () => {
   },[])
 
   if(!cat) {
-      return <Loader height='400px' />
+      return <Loader boxHeight='400px' />
   } else {
       return (
         <div className={s.catItem}>

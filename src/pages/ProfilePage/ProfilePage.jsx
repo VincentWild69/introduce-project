@@ -3,7 +3,7 @@ import s from './ProfilePage.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../components/Loader/MainLoader/Loader';
+import Loader from '../../components/Loader/Loader';
 import rezAvatar from '../../assets/img/rezAvatar.jpg';
 import ModalWindow from '../../components/UI/ModalWindow/ModalWindow';
 import { deleteAccount, getUsersList, updateUsersBin } from '../../store/thunks/authThunks';
@@ -54,7 +54,7 @@ const ProfilePage = () => {
     setModal(false);
   }
   
-  if (isFetching) return <Loader height='60vh' />
+  if (isFetching) return <Loader boxHeight='60vh' />
   if (!profile) return (
     <div className={s.noUser}>
       <div>{error || 'Unexpected error'} &#128577;</div>

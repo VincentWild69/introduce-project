@@ -2,7 +2,7 @@ import s from "./Quotes.module.css";
 import { useState, useEffect } from "react";
 import Quote from "./Quote/Quote";
 import axios from "axios";
-import Loader from './../../components/Loader/MainLoader/Loader';
+import Loader from './../../components/Loader/Loader';
 
 
 const Quotes = () => {

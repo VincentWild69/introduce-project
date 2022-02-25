@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { getUsersList, updateUser, updateUsersBin } from '../../store/thunks/authThunks';
 import { setAlert } from '../../store/slices/authSlice';
 import ModalWindow from '../UI/ModalWindow/ModalWindow';
-import Loader from './../Loader/MainLoader/Loader';
+import Loader from './../Loader/Loader';
 
 
 const cx = classNames.bind(s);
@@ -105,7 +105,7 @@ const EditProfile = () => {
   }
 
 
-  if (serverLoading) return <Loader height='60vh' />
+  if (serverLoading) return <Loader boxHeight='60vh' />
 
   return (
     <RequireAuth>

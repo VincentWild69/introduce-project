@@ -63,7 +63,7 @@ const Todo = () => {
             return <TodoItem key={todoItem.id} todoItem={todoItem} />;
           })
         ) : (
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
+          <div style={{ textAlign: "center", margin: "20px 0" }}>
             {t("todo.no-todos")}
           </div>
         )}

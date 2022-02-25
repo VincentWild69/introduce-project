@@ -1,11 +1,14 @@
 import s from './Loader.module.css';
 
 
-const Loader = ({height = '100px'}) => {
+const Loader = ({boxHeight = '100px', loaderSize = '50px'}) => {
   return (
-      <div className={s.loaderWrapper} style={{height: `${height}`}}>
+      <div className={s.loaderWrapper} style={{height: `${boxHeight}`}}>
         <div className={s.loaderBody}>
-          <svg stroke="#4fc56b" viewBox="0 0 40 40" className={s.loaderSvg}>
+          <svg stroke="#4fc56b" viewBox="0 0 40 40" className={s.loaderSvg} style={{
+            height: `${loaderSize}`,
+            width: `${loaderSize}`
+          }}>
           <g
             transform="translate(2 2)"
             strokeWidth={3}

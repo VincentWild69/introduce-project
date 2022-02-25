@@ -2,7 +2,7 @@ import s from "./Cats.module.css";
 import { useState, useEffect } from "react";
 import CatCards from "./CatCards/CatCards";
 import { useSearchParams } from "react-router-dom";
-import Loader from "./../../components/Loader/MainLoader/Loader";
+import Loader from "./../../components/Loader/Loader";
 
 const apiKey = "8198864b-a113-469f-949b-2d1e5b4dcc90";
 
@@ -96,7 +96,7 @@ const Cats = () => {
   };
 
   if (isFetching) {
-    return <Loader height="70vh" />;
+    return <Loader boxHeight="70vh" />;
   } else {
     return (
       <section className={s.catsContainer}>

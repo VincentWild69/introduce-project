@@ -2,7 +2,7 @@ import s from './Users.module.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsersList } from '../../store/thunks/authThunks';
-import Loader from './../../components/Loader/MainLoader/Loader';
+import Loader from './../../components/Loader/Loader';
 import rezAvatar from '../../assets/img/rezAvatar.jpg';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const Users = () => {
   }, [])
 
 
-  if (isFetching) return <Loader height='60vh' />
+  if (isFetching) return <Loader boxHeight='60vh' />
   if (!users) return (
     <div className={s.noUsers}>
       <div>Cant loading users...</div>
