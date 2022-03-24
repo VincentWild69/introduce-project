@@ -8,7 +8,7 @@ import React from "react";
 import { useFilter, useSort } from "./../../hooks/hooks";
 import { useTranslation } from "react-i18next";
 import { fillTodoList } from "../../store/slices/todosSlice";
-import { storage } from './../../util/storage';
+import { storage } from "../../util/storage";
 
 const Todo = () => {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ const Todo = () => {
     }
 
     if (!offlineMode) {
-      console.log('on')
+      console.log('online mod no exist')
     }
     
   }, [offlineMode])

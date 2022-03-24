@@ -54,7 +54,6 @@ const Cats = () => {
         .then(data => {
           setCats(data);
           setIsFetching(false);
-          setPage(page + 1);
 					if (data.length === portionSize) {
 						setIsMoreCats(true)
 					} else {

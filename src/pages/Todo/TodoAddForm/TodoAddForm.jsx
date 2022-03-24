@@ -15,13 +15,14 @@ const TodoAddForm = () => {
   const [todoImportance, setTodoImportance] = useState('3');
   const [todoDifficult, setTodoDifficult] = useState('3');
 
+
   const createDate = () => {
     return new Date().toLocaleDateString() + '  ' + new Date().toLocaleTimeString('en-GB', { hour: "numeric", minute: "numeric"})
   }
 
-  const importanceScale = [`${t('todo.low')}`, `${t('todo.under-average')}`, `${t('todo.average')}`, `${t('todo.high')}`, `${t('todo.highest')}`];
+  const importanceScale = [t('todo.low'), t('todo.under-average'), t('todo.average'), t('todo.high'), t('todo.highest')];
   
-  const difficultScale = [`${t('todo.easier')}`, `${t('todo.easy')}`, `${t('todo.medium')}`, `${t('todo.hard')}`, `${t('todo.very-hard')}`];
+  const difficultScale = [t('todo.easier'), t('todo.easy'), t('todo.medium'), t('todo.hard'), t('todo.very-hard')];
 
   const addTodoHandler = () => {
     if (todoText.trim() !== '') {
@@ -39,7 +40,6 @@ const TodoAddForm = () => {
       setTodoText('');
     }
   }
-
 
   return (
     <form className={s.todoAddForm} onSubmit={(e) => {e.preventDefault()}}>

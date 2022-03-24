@@ -27,7 +27,7 @@ import EditProfile from "./components/EditProfile/EditProfile";
 function App() {
 
   const dispatch = useDispatch();
-  const error = useSelector(state => state.auth.error.message)
+  const error = useSelector(state => state.auth.error.message);
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
